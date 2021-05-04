@@ -5,7 +5,7 @@ NAME = libft.a
 
 INCLUDE = -Iincludes
 
-SRCS = $(wildcard (.c))
+SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 HDRS = libft.h
 
@@ -15,7 +15,7 @@ $(NAME) : $(OBJS)
 	ar rc $(NAME) $(OBJS)
 
 %.o : %.c
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
 
 clean :
 	rm -f $(OBJS)

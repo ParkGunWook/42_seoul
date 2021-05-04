@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 02:37:24 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/04 17:52:54 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/04 20:12:02 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static	int	find_from_str(char *haystack, char *needle)
 {
 	int		i;
 
+	i = 0;
 	while (*(needle + i) != 0)
 	{
 		if (*(haystack + i) != *(needle + i))
@@ -31,12 +32,12 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t len)
 
 	idx = 0;
 	if (*needle == 0)
-		return (haystack);
+		return (char*)(haystack);
 	while (*(haystack + idx) != 0 && idx < len)
 	{
-		if (find_from_str(haystack + idx, needle) == 1)
+		if (find_from_str((char*)(haystack + idx), (char*)needle) == 1)
 		{
-			return (haystack + idx);
+			return (char*)(haystack + idx);
 		}
 		idx++;
 	}
