@@ -5,14 +5,19 @@ NAME = libft.a
 
 INCLUDE = -Iincludes
 
-SRCS = $(wildcard *.c)
+BONUSSRCS = $(wildcard *lst*.c)
+SRCS = $(filter-out $(BONUSSRCS), $(wildcard *.c))
 OBJS = $(SRCS:.c=.o)
+BONUSOBJS = $(BONUSSRCS:.c=.o)
 HDRS = libft.h
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
 	ar rc $(NAME) $(OBJS)
+
+bonus : $(BONUSOBJS)
+	ar rc $(NAME) $(BONUSOBJS)
 
 %.o : %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
