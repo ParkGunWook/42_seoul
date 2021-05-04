@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 18:12:47 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/03 18:37:22 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/04 20:19:21 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	idx = 0;
 	while (idx < n)
 	{
-		if (*((unsigned char*)(src + idx)) == (unsigned char)c)
-			return (dst);
 		*((unsigned char*)(dst + idx)) = *((unsigned char*)(src + idx));
+		if (*((unsigned char*)(src + idx)) == (unsigned char)c)
+			return (dst + idx + 1);
 		idx++;
 	}
 	return (NULL);

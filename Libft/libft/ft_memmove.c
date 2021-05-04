@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:38:47 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/03 17:11:30 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/04 20:20:49 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static	void	reverse_memmove(void *dst, const void *src, size_t len)
 
 void			*ft_memmove(void *dst, const void *src, size_t len)
 {
+	if (!dst && !src)
+		return (dst);
 	if (dst > src)
 		reverse_memmove(dst, src, len);
 	else

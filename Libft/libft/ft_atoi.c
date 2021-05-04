@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 21:26:45 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/03 22:02:00 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/04 20:27:50 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static	size_t	space_skipper(const char *str)
 		else
 			break ;
 	}
-	printf("idx : %zu\n", idx);
 	return (idx);
 }
 
@@ -36,6 +35,7 @@ int				ft_atoi(const char *str)
 
 	idx = space_skipper(str);
 	ret = 0;
+	minus = 1;
 	if (*(str + idx) == '-' || *(str + idx) == '+')
 	{
 		if (*(str + idx) == '-')
@@ -49,16 +49,9 @@ int				ft_atoi(const char *str)
 			ret *= 10;
 			ret += (int)(*(str + idx) - '0') * minus;
 			idx++;
-			printf("%d\n", ret);
 		}
 		else
 			break ;
 	}
 	return (ret);
-}
-
-int		main(void)
-{
-	printf("%d\n%d\n", ft_atoi("  	-2147483648"), atoi("  	-2147483648"));
-	printf("%d\n%d\n", ft_atoi(" 12144 a 5145"), atoi(" 12144 a 5145"));
 }

@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 18:38:09 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/03 18:45:43 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/04 20:25:39 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	idx = 0;
 	while (idx < n)
 	{
-		if (*((unsigned char*)(s + idx)) == c)
+		if (*((unsigned char*)(s + idx)) == (unsigned char)c)
 			return (void*)(s + idx);
 		idx++;
 	}

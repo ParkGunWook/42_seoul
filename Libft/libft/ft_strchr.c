@@ -6,13 +6,13 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 20:56:24 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/03 21:00:28 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/04 20:24:32 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	size_t	idx;
 
