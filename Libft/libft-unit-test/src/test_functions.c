@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/17 17:42:18 by alelievr          #+#    #+#             */
-/*   Updated: 2021/05/04 16:21:19 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/04 21:19:25 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -8823,7 +8823,7 @@ void			test_ft_atof(void) {
 
 void		test_ft_strlcpy_basic(void *ptr) {
 	typeof(strlcpy)	*ft_strlcpy = ptr;
-	SET_EXPLANATION("your strlcpy does not works with basic input");
+	SET_EXPLANATION("1your strlcpy does not works with basic input");
 
 	SANDBOX_RAISE(
 			char	*str = STRING_1;
@@ -8846,7 +8846,7 @@ void		test_ft_strlcpy_basic(void *ptr) {
 
 void		test_ft_strlcpy_return(void *ptr) {
 	typeof(strlcpy)	*ft_strlcpy = ptr;
-	SET_EXPLANATION("your strlcpy does not return the good value");
+	SET_EXPLANATION("2your strlcpy does not return the good value");
 
 	SANDBOX_RAISE(
 			char	*str = STRING_1;
@@ -8866,7 +8866,7 @@ void		test_ft_strlcpy_return(void *ptr) {
 
 void		test_ft_strlcpy_min(void *ptr) {
 	typeof(strlcpy)	*ft_strlcpy = ptr;
-	SET_EXPLANATION("your strlcpy does works whe size < strlen(src)");
+	SET_EXPLANATION("3your strlcpy does works whe size < strlen(src)");
 
 	SANDBOX_RAISE(
 			char	*str = "hello !";
@@ -8893,7 +8893,7 @@ void		test_ft_strlcpy_min(void *ptr) {
 
 void		test_ft_strlcpy_zero(void *ptr) {
 	typeof(strlcpy)	*ft_strlcpy = ptr;
-	SET_EXPLANATION("your strlcpy does not works with 0-length string");
+	SET_EXPLANATION("4your strlcpy does not works with 0-length string");
 
 	SANDBOX_RAISE(
 			char	*str = "";
@@ -8920,7 +8920,7 @@ void		test_ft_strlcpy_zero(void *ptr) {
 
 void		test_ft_strlcpy_overflow(void *ptr) {
 	typeof(strlcpy)	*ft_strlcpy = ptr;
-	SET_EXPLANATION("your strlcpy overflow the dest");
+	SET_EXPLANATION("5your strlcpy overflow the dest");
 
 	SANDBOX_RAISE(
 			char	*str = "BBBB";
@@ -8941,7 +8941,7 @@ void		test_ft_strlcpy_overflow(void *ptr) {
 
 void		test_ft_strlcpy_null(void *ptr) {
 	typeof(strlcpy)	*ft_strlcpy = ptr;
-	SET_EXPLANATION("your strlcpy doe not segfault when null parameter is sent");
+	SET_EXPLANATION("6your strlcpy doe not segfault when null parameter is sent");
 
 	SANDBOX_PROT(
 			ft_strlcpy(NULL, NULL, 10);
@@ -8950,7 +8950,7 @@ void		test_ft_strlcpy_null(void *ptr) {
 
 void		test_ft_strlcpy_zerosize(void *ptr) {
 	typeof(strlcpy) *ft_strlcpy = ptr;
-	SET_EXPLANATION("your strlcpy copies while destsize is zero, \
+	SET_EXPLANATION("7your strlcpy copies while destsize is zero, \
 or does not return the size of the string it tried to create");
 
 	SANDBOX_RAISE(
@@ -8963,7 +8963,7 @@ or does not return the size of the string it tried to create");
 
 			if (strlcpy(buff1, str, 0) != ft_strlcpy(buff2, str, 0))
 				exit(TEST_FAILED);
-			if (memcmp(buff1, buff2, 20))
+			if (!memcmp(buff1, buff2, 20))
 				exit(TEST_SUCCESS);
 			SET_DIFF_BYTES(buff1, buff2, 20);
 			exit(TEST_FAILED);

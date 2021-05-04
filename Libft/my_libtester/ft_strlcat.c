@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 02:58:26 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/04 21:07:11 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/04 21:23:28 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,21 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 #define		STRING_2	"there is no stars in the sky"
 #define		STRING_3	"test basic !"
 
+
 int main(void)
 {
-	char	*str = STRING_1;
-	char	buff1[0xF00] = STRING_2;
-	char	buff2[0xF00] = STRING_2;
-	size_t	max = strlen(STRING_1) + 4;
-	printf("max : %zu\n", max);
-	size_t	r1 = strlcat(buff1, str, max);
-	size_t	r2 = ft_strlcat(buff2, str, max);
-	printf("%zu %zu \n", r1, r2);
+	char	*str = "BBBB";
+	char	buff1[0xF00];
+	char	buff2[0xF00];
+
+	memset(buff1, 'A', 20);
+	memset(buff2, 'A', 20);
+	buff1[20] = 0;
+	buff2[20] = 0;
+	size_t r1 = strlcpy(buff1, str, 0);
+	size_t r2 = ft_strlcpy(buff2, str, 0);
+	printf("%d\n", memcmp(buff1, buff2, 20));
+	printf("%zu %zu\n", r1, r2);
 	printf("%s\n", buff1);
 	printf("%s\n", buff2);
 }

@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 17:08:08 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/04 21:04:46 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/04 21:21:26 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t	idx;
 
+	if (dst == 0 && src == 0)
+		return (dst);
 	idx = 0;
 	while (idx < n)
 	{
