@@ -1,0 +1,68 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 16:55:43 by gpark             #+#    #+#             */
+/*   Updated: 2021/05/03 17:09:28 by gpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	idx;
+
+	if (n == 0)
+		return ;
+	idx = 0;
+	while (idx < n)
+	{
+		*((unsigned char*)(s + idx)) = 0;
+		idx++;
+	}
+	return ;
+}
+
+int		main(void)
+{
+	int		a[4];
+	char	c[4];
+	int		a2[4];
+	char	c2[4];
+
+	for(int i = 0; i< 4;i++)
+	{
+		a[i] = i + 36;
+		a2[i] = i + 36;
+		c[i] = i + 36;
+		c2[i] = i + 36;
+	}
+	ft_bzero(a, 16);
+	bzero(a2, 16);
+	ft_bzero(c, 4);
+	bzero(c2, 4);
+	for(int i = 0; i < 4; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+	for(int i = 0; i < 4; i++)
+	{
+		printf("%d ", a2[i]);
+	}
+	printf("\n");
+	for(int i = 0; i < 4; i++)
+	{
+		printf("%d ", c[i]);
+	}
+	printf("\n");
+	for(int i = 0; i < 4; i++)
+	{
+		printf("%d ", c2[i]);
+	}
+	printf("\n");
+}

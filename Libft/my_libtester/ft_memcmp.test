@@ -1,0 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 18:46:17 by gpark             #+#    #+#             */
+/*   Updated: 2021/05/03 18:58:15 by gpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	size_t	idx;
+
+	idx = 0;
+	while (idx < n)
+	{
+		if (!(*(unsigned char*)(s1 + idx)) && !(*(unsigned char*)(s2 + idx)))
+			return (0);
+		if (*(unsigned char*)(s1 + idx) != *(unsigned char*)(s2 + idx))
+			return (*(unsigned char*)(s1 + idx) - *(unsigned char*)(s2 + idx));
+		idx++;
+	}
+	return (0);
+}
+
+int		main(void)
+{
+	char s1[10] = "abcdefghi";
+	char s2[10] = "abcd";
+	char s3[10] = "abcpefghi";
+	char s4[10] = "abcdefghi";
+	printf("%d %d\n", ft_memcmp(s1, s2, 10), memcmp(s1, s2, 10));
+	printf("%d %d\n", ft_memcmp(s1, s3, 11), memcmp(s1, s3, 11));
+	printf("%d %d\n", ft_memcmp(s2, s4, 4), memcmp(s2, s4, 4));
+	printf("%d %d\n", ft_memcmp(s1, s4, 10), memcmp(s1, s4, 10));
+}
