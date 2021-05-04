@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 17:08:08 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/05 01:40:30 by gpark            ###   ########.fr       */
+/*   Created: 2021/05/04 23:39:13 by gpark             #+#    #+#             */
+/*   Updated: 2021/05/05 00:05:52 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	idx;
+	size_t		s1_len;
+	size_t		s2_len;
+	size_t		idx;
+	char		*new;
 
-	if (dst == 0 && src == 0)
-		return (dst);
+	if (!s1 || !s2)
+		return (NULL);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	if (!(new = (char*)malloc(sizeof(char) * (s1_len + s2_len + 1))))
+		return (NULL);
 	idx = 0;
-	while (idx < n)
-	{
-		*((unsigned char*)(dst + idx)) = *((unsigned char*)(src + idx));
-		idx++;
-	}
-	return (dst);
+	ft_strlcpy(new, s1, s1_len + s2_len + 1);
+	ft_strlcpy(new + s1_len, s2, s1_len + s2_len + 1);
+	*(new + s1_len + s2_len) = 0;
+	return (new);
 }
