@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 02:37:24 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/03 21:21:54 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/04 17:52:54 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static	int	find_from_str(char *haystack, char *needle)
 	return (1);
 }
 
-char		*ft_strnstr(char *haystack, char *needle, size_t len)
+char		*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	idx;
 
