@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 18:12:47 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/04 21:04:41 by gpark            ###   ########.fr       */
+/*   Created: 2021/05/04 14:12:57 by gpark             #+#    #+#             */
+/*   Updated: 2021/05/04 15:49:37 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+char		*ft_strdup(const char *s1)
 {
-	size_t	idx;
+	size_t		str_size;
+	size_t		idx;
+	char		*new;
 
+	str_size = ft_strlen(s1);
 	idx = 0;
-	while (idx < n)
+	new = (char*)malloc(sizeof(char) * (str_size + 1));
+	if (!new)
+		return (NULL);
+	while (idx < str_size)
 	{
-		*((unsigned char*)(dst + idx)) = *((unsigned char*)(src + idx));
-		if (*((unsigned char*)(src + idx)) == (unsigned char)c)
-			return (dst + idx + 1);
+		*(new + idx) = *(s1 + idx);
 		idx++;
 	}
-	return (NULL);
+	*(new + idx) = 0;
+	return (new);
 }

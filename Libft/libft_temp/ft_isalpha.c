@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 18:12:47 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/04 21:04:41 by gpark            ###   ########.fr       */
+/*   Created: 2021/05/04 12:12:14 by gpark             #+#    #+#             */
+/*   Updated: 2021/05/04 14:58:46 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+int		ft_isalpha(int c)
 {
-	size_t	idx;
-
-	idx = 0;
-	while (idx < n)
-	{
-		*((unsigned char*)(dst + idx)) = *((unsigned char*)(src + idx));
-		if (*((unsigned char*)(src + idx)) == (unsigned char)c)
-			return (dst + idx + 1);
-		idx++;
-	}
-	return (NULL);
+	if (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'))
+		return (1);
+	return (0);
 }
