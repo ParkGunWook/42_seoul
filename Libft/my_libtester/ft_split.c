@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 01:02:15 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/05 02:53:50 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/05 17:52:01 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,11 @@ char			**ft_split(char const *s, char c)
 
 int 			main()
 {
-	char s1[100] = "11ababe11abae11ee1";
+	// char s1[100] = "";
 	char s2[100] = "11ababe11abae11ee";
 	char s3[100] = "ababe11abae11ee1";
-	char **new = ft_split(s1, '1');
-	for(int i=0;i<4;i++)
+	char **new = ft_split(NULL, 0);
+	for(int i=0;i<1;i++)
 		printf("%s\n", new[i]);
 	printf("\n");
 	new = ft_split(s2, '1');

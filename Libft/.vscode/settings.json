@@ -13,6 +13,7 @@
 		"unordered_map": "c",
 		"utility": "c",
 		"vector": "c",
-		"ios": "c"
+		"ios": "c",
+		"stdlib.h": "c"
 	}
 }
