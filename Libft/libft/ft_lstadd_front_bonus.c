@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 18:46:17 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/05 05:23:03 by gpark            ###   ########.fr       */
+/*   Created: 2021/05/05 05:08:01 by gpark             #+#    #+#             */
+/*   Updated: 2021/05/05 05:42:22 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	size_t	idx;
-
-	idx = 0;
-	while (idx < n)
-	{
-		if (*(unsigned char*)(s1 + idx) != *(unsigned char*)(s2 + idx))
-			return (*(unsigned char*)(s1 + idx) - *(unsigned char*)(s2 + idx));
-		idx++;
-	}
-	return (0);
+	new->next = *lst;
+	*lst = new;
 }

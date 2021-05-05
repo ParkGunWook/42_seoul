@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 18:46:17 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/05 05:23:03 by gpark            ###   ########.fr       */
+/*   Created: 2021/05/05 04:49:42 by gpark             #+#    #+#             */
+/*   Updated: 2021/05/05 05:16:52 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	idx;
+	t_list	*new;
 
-	idx = 0;
-	while (idx < n)
-	{
-		if (*(unsigned char*)(s1 + idx) != *(unsigned char*)(s2 + idx))
-			return (*(unsigned char*)(s1 + idx) - *(unsigned char*)(s2 + idx));
-		idx++;
-	}
-	return (0);
+	new = (t_list*)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }
