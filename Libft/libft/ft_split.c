@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 01:02:15 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/05 02:56:35 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/06 11:06:49 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,13 @@ static size_t	count_split(char const *s, char c)
 
 static int		free_all(char **ret, size_t idx)
 {
-	free(ret[idx]);
+	while (1)
+	{
+		free(ret[idx]);
+		if (idx == 0)
+			break ;
+		idx--;
+	}
 	free(ret);
 	return (0);
 }
@@ -73,7 +79,7 @@ static int		split_str(char const *s, char c, char **ret)
 	{
 		if (*(s + cur) == c)
 		{
-			if (prev + 1 == cur && prev != 0 && prev++ && ++cur)
+			if (prev + 1 == cur && prev != -1 && prev++ && ++cur)
 				continue;
 			if (!(ret[ret_idx++] = ft_substr(s, prev + 1, cur - prev - 1)))
 				return (free_all(ret, ret_idx));

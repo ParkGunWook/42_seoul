@@ -6,12 +6,11 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 21:26:45 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/05 17:37:11 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/04 15:53:08 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
 static	size_t	space_skipper(const char *str)
 {
@@ -59,6 +58,7 @@ int				ft_atoi(const char *str)
 
 int		main(void)
 {
+	__LONG_MAX__
 	printf("%d\n%d\n", ft_atoi("  	214748364812"), atoi("  	214748364812ß"));
 	printf("%d\n%d\n", ft_atoi(" 12144 a 5145"), atoi(" 12144 a 5145"));
 	printf("%d\n%d\n", ft_atoi(" -12144 a 5145"), atoi(" -12144 a 5145"));
