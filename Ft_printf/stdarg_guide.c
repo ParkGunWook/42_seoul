@@ -3,13 +3,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void foo(char *fmt, ...)
+void foo(char *fmt, char *fmt2, ...)
 {
 	va_list ap;
 	int d;
 	char c, *s;
 
-	va_start(ap, fmt);
+	va_start(ap, fmt2);
 	while(*fmt)
 	{
 		switch (*fmt++)
@@ -37,5 +37,5 @@ int main()
 {
 	char s1[10] = "sdcsdc";
 
-	foo(s1, "first", "fo", 'a', "second", 2, 'b');
+	foo(s1, "abc", "first", 1, 'a', "second", 2, 'b');
 }
