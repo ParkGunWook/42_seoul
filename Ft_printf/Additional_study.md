@@ -25,4 +25,4 @@ MyProgram: foo.o bar.o baz.o
 
 [참고자료](stackoverflow.com/questions/52502399/what-does-it-mean-for-a-makefile-to-relink)
 
-
+## About
