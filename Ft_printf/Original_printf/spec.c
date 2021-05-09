@@ -36,6 +36,7 @@ int main()
 	printf("%s%n\n", string, pointer);
 	printf("%d\n", *pointer);
 	printf("%f\n", pi);
+	//printf("%g\n", integer);
 	printf("%g\n", pi);
 	printf("%e\n", pi);
 	ret_num = printf("");

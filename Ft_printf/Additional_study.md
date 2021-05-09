@@ -25,4 +25,30 @@ MyProgram: foo.o bar.o baz.o
 
 [참고자료](stackoverflow.com/questions/52502399/what-does-it-mean-for-a-makefile-to-relink)
 
-## About
+## About floating point.
+
+double 기준 (64비트)
+| 역할 | 크기(bits) |
+| - | - |
+| sign | 1 |
+| exponent | 11 |
+| Signified precision | 52 |
+
+사인 비트는 넘버의 부호를 결정한다.
+
+지수 부분은 11비트의 부호가 없는 인티저로 0~2047을 표현한다.(바이어스 폼을 취한다.) 1023은 실제로는 0을 의미한다. 지수의 범위는 -1022부터 1023을 표현하는데 -1023(모두 0)과 +1024(모두 1)들은 특별한 숫자를 저장한다.
+
+지수 부분 - 1023을 가수부에 곱하면 된다.
+
+여기서 바이어스 폼이란, 값은 지수 바이어스 만큼 오프셋을 가진다는 것이다. 크고 작은 수를 표현하기 위해서 사용한다. 2의 보수가 사용하기 힘들어서이다.
+
+이 문제를 해결하기 위해서 지수는 부호가 없는 값에 저장되고 바이어스를 뺌으로서 부호를 가진 범위를 갖는다.
+
+
+53비트 가수부분은 15~17의 significant decimal digit 정밀도를 준다. 만약 최대 15개의 숫자를 가진 데시멀 스트링이 IEEE 754로 전환되면, 다시 같은 숫자로 돌아온다. 마지막 결과는 오리지널 스트링과 일치한다. 만약 IEEE 754 배정밀도 숫자가 최소 17개의 significant digits로 해석되면, 그리고 다시 돌아오면 그 최종결과는 오리지널 숫자와 일치한다.
+
+
+
+[floating point bit 계산기](https://www.binaryconvert.com/result_double.html?decimal=048046053)
+
+https://wonsorang.tistory.com/653

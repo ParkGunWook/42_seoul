@@ -3,6 +3,7 @@ int main()
 {
 	int i1 = 123456;
 	int i2 = -123456;
+	char c = 'C';
 	int *ptr_i1 = &i1;
 	char s1[10] = "abcdef";
 	char s2[10] = "ghijkl";
@@ -11,11 +12,14 @@ int main()
 	printf("% d % d | what solo space works\n", i1, i2);
 	printf("%-d %-d | what solo minus works\n", i1, i2);
 	printf("%4d %4d | if num over width\n\n", i1, i2);
+	printf("%4p %4p | if num over width\n\n", ptr_i1, &i2);
+	printf("%4c %4c | if num over width\n\n", c, c);
+	//printf("%4-d %4+d | if num over width\n\n", i1, i2);
 	printf("%12d %12d | + and width\n", i1, i2);
 	printf("%+12d %+12d | + and width\n", i1, i2);
 	printf("%-12d %-12d | - and width\n", i1, i2);
 	printf("%012d %012d | 0 and width\n", i1, i2);
-	printf("%+012d %+012d | + and 0 and width\n", i1, i2);
+	printf("%0+12d %+012d | + and 0 and width\n", i1, i2);
 	printf("%+-12d %+-12d | + and - and width\n", i1, i2);
 	printf("% 012d % 012d | + and 0 and width\n", i1, i2);
 	printf("% -12d % -12d | space and - and width\n", i1, i2);
