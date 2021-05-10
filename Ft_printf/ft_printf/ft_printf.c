@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 14:22:14 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/09 22:57:55 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/10 16:50:11 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int			ft_printf(const char *str, ...)
 	while (*(str + i))
 	{
 		//write(1, (str + i), 1);
+		/*write(1, "idx : ", 6);
+		ft_putnbr_fd(i, 1);
+		write(1, "\n", 1);*/
 		if (*(str + i) != '%')
 		{
 			ft_putchar_fd(*(str + i), 1);
@@ -52,10 +55,4 @@ int			ft_printf(const char *str, ...)
 		}
 	}
 	return (0);
-}
-
-int main()
-{
-	ft_printf("%10c\n", 'a');
-	printf("%10c\n", 'a');
 }

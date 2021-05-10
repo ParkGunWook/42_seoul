@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 22:01:57 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/09 22:52:21 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/10 17:25:57 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ static size_t	ft_update_precision_option(const char *str,
 	char	*new;
 
 	n = ft_atoi(str + 1);
-	format_spec->precision_count = n;
 	new = ft_itoa(n);
 	len = ft_strlen(new);
+	format_spec->precision_count += (len + 1);
 	free(new);
 	return (len + 1);
 }

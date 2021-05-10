@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 14:21:43 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/09 22:39:14 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/10 17:38:08 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ size_t			ft_update_options(const char *str, t_format *format_spec, int spec);
 void			fill_print_buffer(t_format *t_format, char *print_buffer,
 				const char *str, size_t buffer_size);
 char			*alloc_print_buffer(size_t size);
-int				ft_print_char(t_format *format_spec, va_list ap);
+int				ft_printf_char(t_format *format_spec, va_list ap);
+int				ft_printf_string(t_format *format_spec, va_list ap);
+int				ft_printf_int(t_format *t_format_spec, va_list ap);
 
 #endif
