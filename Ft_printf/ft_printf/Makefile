@@ -12,8 +12,8 @@ OBJS = $(SRCS:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT)
-	ar rc $(NAME) $(OBJS)
-	ar rc $(NAME) $(LIBFTOBJS)
+	cp $(LIBFT) $(NAME)
+	ar rcs $(NAME) $(OBJS)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $^ -o $@

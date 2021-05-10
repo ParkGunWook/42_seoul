@@ -14,6 +14,8 @@
 		"memory": "c",
 		"ratio": "c",
 		"tuple": "c",
-		"utility": "c"
+		"utility": "c",
+		"sstream": "c",
+		"libprint.h": "c"
 	}
 }

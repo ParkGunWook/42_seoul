@@ -33,11 +33,12 @@ int main()
 
 	printf("w      		: %10d\n", d);
 	printf("p      		: %.10d\n", d);
-	printf("w + p  		: %10.15d\n", d);
-	printf("w + p  		: %15.10d\n", d);
+	printf("w < p  		: %10.15d\n", d);
+	printf("w > p  		: %15.10d\n", d);
 	printf("0 + w + p	: %010.15d\n", d);
 	printf("0 + w + p	: %015.10d\n", d);
-	printf("- wi   		: %-10d\n", d);
+
+
 	printf("normal 		: %d\n", d2);
 	printf("-      		: %-10d\n", d2);
 	printf("+      		: %+10d\n", d2);
