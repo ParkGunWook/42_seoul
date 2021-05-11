@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 18:56:22 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/10 17:39:36 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/11 12:51:49 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,20 @@ int		ft_printf_char(t_format *format_spec, va_list ap)
 	char	c;
 	char	*c_str;
 	char	*print_buffer;
-	size_t	buffer_size;
 
 	c = va_arg(ap, int);
-	buffer_size = format_spec->width > 1 ? format_spec->width + 1 : 1 + 1;
-	if (!(print_buffer = alloc_print_buffer(buffer_size)))
+	format_spec->size[BUFFER] = format_spec->width > 1 ? format_spec->width : 1;
+	format_spec->size[STR] = 1;
+	if (!(print_buffer = alloc_print_buffer(format_spec->size[BUFFER])))
 		return (0);
-	ft_memset(print_buffer, ' ', buffer_size);
+	ft_memset(print_buffer, ' ', format_spec->size[BUFFER]);
 	if (!(c_str = malloc(sizeof(char) * 2)))
 		return (0);
 	c_str[0] = c;
-	c_str[1] = 0;
-	fill_print_buffer(format_spec, print_buffer, c_str, buffer_size);
+	fill_print_buffer(format_spec, print_buffer, c_str);
 	if (format_spec->flags[MINUS_FLAG])
 		print_buffer[1] = ' ';
-	print_buffer[buffer_size - 1] = 0;
-	ft_putstr_fd(print_buffer, 1);
-	format_spec->spec_size += 2;
+	ft_putstr_size_fd(print_buffer, 1, format_spec->size[BUFFER]);
 	free(c_str);
 	free(print_buffer);
 	return (1);

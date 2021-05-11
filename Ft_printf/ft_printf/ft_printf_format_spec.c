@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:40:19 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/10 17:37:43 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/11 12:52:05 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int		get_specifier(char c)
 		return (EXPONENTIAL);
 	else if (c == '0' || c == '-' || c == '+' || c == ' ' || c == '#')
 		return (FLAG);
-	else if ('0' <= c && c <= '9')
+	else if (('0' <= c && c <= '9') || c == '*')
 		return (WIDTH);
 	else if (c == '.')
 		return (PRECISION);
@@ -39,7 +39,7 @@ static int		get_specifier(char c)
 	return (0);
 }
 
-static size_t	get_format(const char *str, t_format *format_spec)
+static void	get_format(const char *str, t_format *format_spec, va_list ap)
 {
 	size_t	i;
 	size_t	n;
@@ -51,18 +51,19 @@ static size_t	get_format(const char *str, t_format *format_spec)
 		spec = get_specifier(*(str + i));
 		if (CHAR <= spec && spec <= EXPONENTIAL)
 		{
+			format_spec->type = spec;
+			format_spec->spec_size += 1;
 			/*write(1, "spec size : ", 12);
 			ft_putnbr_fd((int)format_spec->spec_size, 1);
 			ft_putchar_fd('\n', 1);*/
-			format_spec->type = spec;
-			return (i);
+			return ;
 		}
 		else if (FLAG <= spec && spec <= LENGTH)
-			n = ft_update_options(str + i, format_spec, spec);
+			n = ft_update_options(str + i, format_spec, spec, ap);
 		else
-			return (0);
+			return ;
 		if (n == 0)
-			return (0);
+			return ;
 		i += n;
 		format_spec->spec_size += n;
 		/*write(1, "cur idx : ", 10);
@@ -72,19 +73,19 @@ static size_t	get_format(const char *str, t_format *format_spec)
 		ft_putnbr_fd(format_spec->spec_size, 1);
 		ft_putchar_fd('\n', 1);*/
 	}
-	return (0);
+	return ;
 }
 
-void		ft_printf_format_spec(const char *str,
+int				ft_printf_format_spec(const char *str,
 							t_format *format_spec, va_list ap)
 {
 	int		type;
 
-	get_format(str, format_spec);
+	get_format(str, format_spec, ap);
 	type = format_spec->type;
 	if (type == CHAR || type == INT)
 		type == CHAR ? ft_printf_char(format_spec, ap) :
-			ft_printf_int(format_spec, ap);
+		ft_printf_int(format_spec, ap);
 	else if (type == STRING)
 		ft_printf_string(format_spec, ap);
 	/*else if (type == POINTER)
@@ -101,4 +102,7 @@ void		ft_printf_format_spec(const char *str,
 		ft_printf_float(format_spec, ap);
 	else if (type == GRANULATED_FLOAT)
 		ft_printf_granulated(format_spec, ap);*/
+	else
+		return (0);
+	return (1);
 }

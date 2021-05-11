@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 14:22:14 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/10 16:50:11 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/11 12:49:18 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ static void	init_formatter(t_format *format_spec)
 	i = 0;
 	while (i < 5)
 		format_spec->flags[i++] = 0;
+	i = 0;
+	while (i < 2)
+		format_spec->size[i++] = 0;
 	format_spec->type = 0;
-	format_spec->spec_size = 0;
+	format_spec->spec_size = 1;
 	format_spec->width = -1;
 	format_spec->precision_count = -1;
 	format_spec->length = -1;
@@ -46,13 +49,16 @@ int			ft_printf(const char *str, ...)
 		{
 			ft_putchar_fd(*(str + i), 1);
 			i++;
+			num_print++;
 		}
 		else
 		{
 			init_formatter(&format_spec);
 			ft_printf_format_spec(str + i + 1, &format_spec, ap);
+			//ft_putnbr_fd(format_spec.spec_size, 1);
 			i += format_spec.spec_size;
+			num_print += format_spec.size[BUFFER];
 		}
 	}
-	return (0);
+	return (num_print);
 }

@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 14:21:43 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/10 21:01:00 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/11 12:47:16 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@
 # define		LL_FLAG 2
 # define		HH_FLAG 3
 
+# define		BUFFER 0
+# define		STR 1
+
 typedef struct	s_format
 {
 	int		type;
@@ -57,15 +60,16 @@ typedef struct	s_format
 	int		precision_count;
 	int		length;
 	size_t	spec_size;
-	size_t	total_len;
+	size_t	size[2];
 }				t_format;
 
 int				ft_printf(const char *str, ...);
-void			ft_printf_format_spec(const char *str,
+int				ft_printf_format_spec(const char *str,
 				t_format *format_spec, va_list ap);
-size_t			ft_update_options(const char *str, t_format *format_spec, int spec);
+size_t			ft_update_options(const char *str, t_format *format_spec, int spec, va_list ap);
 void			fill_print_buffer(t_format *format_spec, char *print_buffer,
-				const char *str, size_t buffer_size);
+				const char *str);
+void			ft_putstr_size_fd(char *str, int fd, size_t size);
 char			*alloc_print_buffer(size_t size);
 int				ft_printf_char(t_format *format_spec, va_list ap);
 int				ft_printf_string(t_format *format_spec, va_list ap);

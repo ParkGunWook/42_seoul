@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 22:01:57 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/10 17:25:57 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/11 11:59:31 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,33 +29,44 @@ static size_t	ft_update_flag_option(const char *str, t_format *format_spec)
 	return (1);
 }
 
-static size_t	ft_update_width_option(const char *str, t_format *format_spec)
+static size_t	ft_update_width_option(const char *str,
+				t_format *format_spec, va_list ap)
 {
 	size_t	len;
 	int		n;
 	char	*new;
 
-	n = ft_atoi(str);
+	n = (*str == '*') ? va_arg(ap, int) : ft_atoi(str);
+	if (*str == '*' && n == -2147483648)
+		return (0);
 	format_spec->width = n;
+	if (*str == '*' && n < 0)
+	{
+		format_spec->width = -n;
+		format_spec->flags[MINUS_FLAG] = 1;
+	}
 	new = ft_itoa(n);
 	len = ft_strlen(new);
 	free(new);
-	return (len);
+	return (*str == '*' ? 1 : (len));
 }
 
 static size_t	ft_update_precision_option(const char *str,
-				t_format *format_spec)
+				t_format *format_spec, va_list ap)
 {
 	size_t	len;
 	int		n;
 	char	*new;
 
-	n = ft_atoi(str + 1);
+	if (*(str + 1) != '*' || *(str + 1) != '-' ||
+		!('0' <= *(str + 1) && *(str + 1) <= '9'))
+		return (1);
+	n = *(str + 1) == '*' ? va_arg(ap, int) : ft_atoi(str);
 	new = ft_itoa(n);
 	len = ft_strlen(new);
-	format_spec->precision_count += (len + 1);
+	format_spec->precision_count = (len + 1);
 	free(new);
-	return (len + 1);
+	return (*(str + 1) == '*' ? 2 : (len + 1));
 }
 
 static size_t	ft_update_length_option(const char *str, t_format *format_spec)
@@ -75,7 +86,7 @@ static size_t	ft_update_length_option(const char *str, t_format *format_spec)
 }
 
 size_t			ft_update_options(const char *str,
-				t_format *format_spec, int spec)
+				t_format *format_spec, int spec, va_list ap)
 {
 	size_t	n;
 
@@ -83,9 +94,9 @@ size_t			ft_update_options(const char *str,
 	if (spec == FLAG)
 		n = ft_update_flag_option(str, format_spec);
 	else if (spec == WIDTH)
-		n = ft_update_width_option(str, format_spec);
+		n = ft_update_width_option(str, format_spec, ap);
 	else if (spec == PRECISION)
-		n = ft_update_precision_option(str, format_spec);
+		n = ft_update_precision_option(str, format_spec, ap);
 	else if (spec == LENGTH)
 		n = ft_update_length_option(str, format_spec);
 	return (n);
