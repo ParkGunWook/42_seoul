@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 14:21:43 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/11 12:47:16 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/11 15:25:07 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct	s_format
 	int		type;
 	int		flags[5];
 	int		width;
-	int		precision_count;
+	int		precision;
 	int		length;
 	size_t	spec_size;
 	size_t	size[2];
@@ -74,5 +74,6 @@ char			*alloc_print_buffer(size_t size);
 int				ft_printf_char(t_format *format_spec, va_list ap);
 int				ft_printf_string(t_format *format_spec, va_list ap);
 int				ft_printf_int(t_format *t_format_spec, va_list ap);
+char			*ft_ntoa_flag(int n, int base, t_format *format_spec);
 
 #endif

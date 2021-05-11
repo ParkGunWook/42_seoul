@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 22:01:57 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/11 11:59:31 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/11 17:34:38 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static size_t	ft_update_width_option(const char *str,
 	int		n;
 	char	*new;
 
+	if (format_spec->width != -1)
+		return (0);
 	n = (*str == '*') ? va_arg(ap, int) : ft_atoi(str);
 	if (*str == '*' && n == -2147483648)
 		return (0);
@@ -58,13 +60,19 @@ static size_t	ft_update_precision_option(const char *str,
 	int		n;
 	char	*new;
 
-	if (*(str + 1) != '*' || *(str + 1) != '-' ||
+	if (format_spec->precision != -1)
+		return (0);
+	if (*(str + 1) != '*' && *(str + 1) != '-' &&
 		!('0' <= *(str + 1) && *(str + 1) <= '9'))
+	{
+		format_spec->precision = 0;
 		return (1);
-	n = *(str + 1) == '*' ? va_arg(ap, int) : ft_atoi(str);
+	}
+	n = *(str + 1) == '*' ? va_arg(ap, int) : ft_atoi(str + 1);
 	new = ft_itoa(n);
 	len = ft_strlen(new);
-	format_spec->precision_count = (len + 1);
+	format_spec->precision = n;
+	format_spec->flags[ZERO_FLAG] = 0;
 	free(new);
 	return (*(str + 1) == '*' ? 2 : (len + 1));
 }

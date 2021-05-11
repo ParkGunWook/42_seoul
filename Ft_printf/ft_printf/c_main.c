@@ -27,8 +27,8 @@ int main()
 	printf("%----10cdone----\n", 'a');
 	ft_printf("%*c\n", 10, '*');
 	printf("%*c\n", 10, '*');
-	//ft_printf("%*cminft\n", INT32_MIN, '*');
-	//printf("%*cminre\n", INT32_MIN, '*');
+	ft_printf("%*cminft\n", INT32_MIN, '*');
+	printf("%*cminre\n", INT32_MIN, '*');
 	ft_printf("%*cdone-\n", -10, '*');
 	printf("%*cdone-\n", -10, '*');
 	ft_printf("%-*cdone--\n", -10, '*');

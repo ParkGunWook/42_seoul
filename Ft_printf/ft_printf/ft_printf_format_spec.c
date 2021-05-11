@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:40:19 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/11 12:52:05 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/11 14:25:35 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	get_format(const char *str, t_format *format_spec, va_list ap)
 		ft_putnbr_fd(i, 1);
 		write(1, "\n", 1);
 		write(1, "spec size : ", 12);
-		ft_putnbr_fd(format_spec->spec_size, 1);
+		ft_putnbr_fd(n, 1);
 		ft_putchar_fd('\n', 1);*/
 	}
 	return ;

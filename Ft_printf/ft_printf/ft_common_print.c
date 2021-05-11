@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 19:02:29 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/11 12:49:48 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/11 15:54:56 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,8 @@ void	fill_print_buffer(t_format *format_spec, char *print_buffer,
 	ft_memcpy(print_buffer, str, format_spec->size[STR]) :
 	ft_memcpy(print_buffer + format_spec->size[BUFFER] - format_spec->size[STR],
 	str, format_spec->size[STR]);
+	/*write(1, "filled : ", 9);
+	write(1, str, format_spec->size[BUFFER]);
+	write(1, print_buffer, format_spec->size[BUFFER]);
+	write(1, "\n", 1);*/
 }

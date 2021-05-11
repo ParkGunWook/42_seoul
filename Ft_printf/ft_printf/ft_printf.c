@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 14:22:14 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/11 12:49:18 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/11 14:00:30 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	init_formatter(t_format *format_spec)
 	format_spec->type = 0;
 	format_spec->spec_size = 1;
 	format_spec->width = -1;
-	format_spec->precision_count = -1;
+	format_spec->precision = -1;
 	format_spec->length = -1;
 }
 
