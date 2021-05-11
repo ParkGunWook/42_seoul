@@ -124,4 +124,6 @@ int main()
 	ft_printf("0 + w > p	: %015.10d\n", d2);
 	int cnt = printf("%.0d%.d\n", 0, 0);
 	printf("%d\n", cnt);
+	printf("|%-4.*d|\n", -4, 0);
+	ft_printf("|%-4.*d|\n", -4, 0);
 }
