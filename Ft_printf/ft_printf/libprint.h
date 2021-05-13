@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 14:21:43 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/13 10:05:14 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 17:36:26 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,15 @@ int				ft_printf_format_spec(const char *str,
 size_t			ft_update_options(const char *str, t_format *format_spec, int spec, va_list ap);
 void			fill_print_buffer(t_format *format_spec, char *print_buffer,
 				const char *str);
-void			ft_putstr_size_fd(char *str, int fd, size_t size);
 char			*alloc_print_buffer(size_t size);
 int				ft_printf_char(t_format *format_spec, va_list ap);
 int				ft_printf_string(t_format *format_spec, va_list ap);
 int				ft_printf_int(t_format *t_format_spec, va_list ap);
+int				ft_printf_pointer(t_format *format_spec, va_list ap);
+int				ft_printf_unsigned_int(t_format *format_spec, va_list ap);
+int				ft_printf_hexadecimal(t_format *format_spec, va_list ap);
 char			*ft_ntoa_flag(long long n, long long base, t_format *format_spec);
+char			*ft_ptoa_flag(size_t n, size_t base, t_format *format_spec);
+char			base_to_base(long long idx, t_format *format_spec);
 
 #endif

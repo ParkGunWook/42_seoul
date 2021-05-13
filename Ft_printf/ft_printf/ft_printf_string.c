@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 18:56:22 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/11 15:05:00 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 13:35:26 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,13 @@ int		ft_printf_string(t_format *format_spec, va_list ap)
 	format_spec->width : format_spec->size[STR];
 	if (!(print_buffer = alloc_print_buffer(format_spec->size[BUFFER]))
 	&& format_spec->size[BUFFER] != 0)
-	{
-		write(1, "This shall not printed\n", 23);
 		return (0);
-	}
 	ft_memset(print_buffer, ' ', format_spec->size[BUFFER]);
 	/*write(1, "ft start : ", 11);
 	ft_putstr_fd(str, 1);
 	write(1, "\n", 1);*/
 	fill_print_buffer(format_spec, print_buffer, str);
-	ft_putstr_size_fd(print_buffer, 1, format_spec->size[BUFFER]);
+	write(1, print_buffer, format_spec->size[BUFFER]);
 	free(print_buffer);
 	return (1);
 }

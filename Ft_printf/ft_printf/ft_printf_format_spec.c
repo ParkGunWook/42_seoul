@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:40:19 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/13 10:32:54 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 17:44:14 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,6 @@ static void	get_format(const char *str, t_format *format_spec, va_list ap)
 		{
 			format_spec->type = spec;
 			format_spec->spec_size += 1;
-			/*write(1, "spec size : ", 12);
-			ft_putnbr_fd((int)format_spec->spec_size, 1);
-			ft_putchar_fd('\n', 1);*/
 			return ;
 		}
 		else if (FLAG <= spec && spec <= LENGTH)
@@ -66,12 +63,6 @@ static void	get_format(const char *str, t_format *format_spec, va_list ap)
 			return ;
 		i += n;
 		format_spec->spec_size += n;
-		/*write(1, "cur idx : ", 10);
-		ft_putnbr_fd(i, 1);
-		write(1, "\n", 1);
-		write(1, "spec size : ", 12);
-		ft_putnbr_fd(n, 1);
-		ft_putchar_fd('\n', 1);*/
 	}
 	return ;
 }
@@ -88,13 +79,13 @@ int				ft_printf_format_spec(const char *str,
 		ft_printf_int(format_spec, ap));
 	else if (type == STRING)
 		return (ft_printf_string(format_spec, ap));
-	/*else if (type == POINTER)
+	else if (type == POINTER)
 		return (ft_printf_pointer(format_spec, ap));
 	else if (type == UNSIGNED_INT)
 		ft_printf_unsigned_int(format_spec, ap);
 	else if (type == S_HEXADECIMAL || type == L_HEXADECIMAL)
 		ft_printf_hexadecimal(format_spec, ap);
-	else if (type == PERCENT)
+	/*else if (type == PERCENT)
 		ft_printf_percent(format_spec, ap);
 	else if (type == COUNTER)
 		ft_printf_counter(format_spec, ap);

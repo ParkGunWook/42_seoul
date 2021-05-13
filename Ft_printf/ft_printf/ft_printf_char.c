@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 18:56:22 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/11 13:51:28 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 13:35:17 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_printf_char(t_format *format_spec, va_list ap)
 	fill_print_buffer(format_spec, print_buffer, c_str);
 	if (format_spec->flags[MINUS_FLAG])
 		print_buffer[1] = ' ';
-	ft_putstr_size_fd(print_buffer, 1, format_spec->size[BUFFER]);
+	write(1, print_buffer, format_spec->size[BUFFER]);
 	free(c_str);
 	free(print_buffer);
 	return (1);

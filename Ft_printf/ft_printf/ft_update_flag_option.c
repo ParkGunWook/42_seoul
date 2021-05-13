@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 22:01:57 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/13 09:35:15 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 17:47:15 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static size_t	ft_update_flag_option(const char *str, t_format *format_spec)
 {
-	if (format_spec->width != -1 || format_spec->width != -1
+	if (format_spec->width != -1 || format_spec->precision != -1
 	|| format_spec->length != -1)
 		return (0);
 	else if (*str == '0')
