@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 14:22:14 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/13 17:32:07 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 20:30:25 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	init_formatter(t_format *format_spec)
 	int	i;
 
 	i = 0;
-	while (i < 5)
+	while (i < 6)
 		format_spec->flags[i++] = 0;
 	i = 0;
 	while (i < 2)

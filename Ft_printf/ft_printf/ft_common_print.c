@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 19:02:29 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/13 16:56:20 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 21:09:57 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ void	fill_print_buffer(t_format *format_spec, char *print_buffer,
 	ft_memcpy(print_buffer, str, format_spec->size[STR]) :
 	ft_memcpy(print_buffer + format_spec->size[BUFFER] - format_spec->size[STR],
 	str, format_spec->size[STR]);
-	/*write(1, "filled : ", 9);
-	write(1, str, format_spec->size[STR]);
-	write(1, " ", 1);
-	write(1, print_buffer, format_spec->size[BUFFER]);
-	write(1, "\n", 1);*/
 }
 
 char	base_to_base(long long idx, t_format *format_spec)
@@ -48,3 +43,12 @@ char	base_to_base(long long idx, t_format *format_spec)
 		return ('0' + idx);
 }
 
+size_t	zero_counter(const char *str)
+{
+	size_t idx;
+
+	idx = 0;
+	while (*(str + idx) == '0' && *(str + idx))
+		idx++;
+	return (idx);
+}

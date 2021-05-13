@@ -2,11 +2,11 @@
 
 int main()
 {
-	char str[15] = "hi im ekwon";
+	char str[10] = "abcd";
 	//char str2[10] = "efg";
-	printf("a%.03sa\n", str);
-	ft_printf("a%.03sa\n", str);
-	printf("re : %10.04s\n", str);
+	printf("re : %s\n", str);
+	ft_printf("ft : %s\n", str);
+	printf("re : %10s\n", str);
 	ft_printf("ft : %10s\n", str);
 	printf("re : %-10s\n", str);
 	ft_printf("ft : %-10s\n", str);

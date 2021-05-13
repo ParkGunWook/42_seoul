@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 03:03:31 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/13 17:42:27 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 21:25:59 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ char			*ft_ntoa_flag(long long n, long long base,
 	return (new);
 }
 
-char			*ft_ptoa_flag(size_t n, size_t base, t_format *format_spec)
+char			*ft_ptoa_flag(unsigned long long n, unsigned long long base,
+				t_format *format_spec)
 {
 	char			*new;
 
@@ -109,13 +110,13 @@ char			*ft_ptoa_flag(size_t n, size_t base, t_format *format_spec)
 	if (n == 0)
 		format_spec->size[STR] = format_spec->precision == 0 ? 3 : 4;
 	else
-		format_spec->size[STR] = base_len(n, base, format_spec) + 3;
+		format_spec->size[STR] = ptr_base_len(n, base, format_spec) + 3;
 	if (!(new = (char*)malloc(sizeof(char) * (format_spec->size[STR] + 1))))
 		return (NULL);
 	new[0] = '0';
 	new[1] = format_spec->type == L_HEXADECIMAL ? 'X' : 'x';
 	if (format_spec->precision != 0 && n == 0)
 		new[2] = '0';
-	put_number(n, base, new, format_spec);
+	put_pointer(n, base, new, format_spec);
 	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:40:19 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/13 17:44:14 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 21:01:57 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int		get_specifier(char c)
 	return (0);
 }
 
-static void	get_format(const char *str, t_format *format_spec, va_list ap)
+static void		get_format(const char *str, t_format *format_spec, va_list ap)
 {
 	size_t	i;
 	size_t	n;
@@ -57,9 +57,7 @@ static void	get_format(const char *str, t_format *format_spec, va_list ap)
 		}
 		else if (FLAG <= spec && spec <= LENGTH)
 			n = ft_update_options(str + i, format_spec, spec, ap);
-		else
-			return ;
-		if (n == 0)
+		if (n == 0 || spec == 0)
 			return ;
 		i += n;
 		format_spec->spec_size += n;
@@ -85,9 +83,9 @@ int				ft_printf_format_spec(const char *str,
 		ft_printf_unsigned_int(format_spec, ap);
 	else if (type == S_HEXADECIMAL || type == L_HEXADECIMAL)
 		ft_printf_hexadecimal(format_spec, ap);
-	/*else if (type == PERCENT)
-		ft_printf_percent(format_spec, ap);
-	else if (type == COUNTER)
+	else if (type == PERCENT)
+		ft_printf_percent(format_spec);
+	/*else if (type == COUNTER)
 		ft_printf_counter(format_spec, ap);
 	else if (type == FLOAT)
 		ft_printf_float(format_spec, ap);

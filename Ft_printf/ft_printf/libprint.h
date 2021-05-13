@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 14:21:43 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/13 17:36:26 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 21:23:20 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define 		SHARP_FLAG 2
 # define 		SPACE_FLAG 3
 # define 		PLUS_FLAG 4
+# define 		PZERO_FLAG 5
 
 # define		L_FLAG 0
 # define		H_FLAG 1
@@ -55,7 +56,7 @@
 typedef struct	s_format
 {
 	int		type;
-	int		flags[5];
+	int		flags[6];
 	int		width;
 	int		precision;
 	int		length;
@@ -76,8 +77,15 @@ int				ft_printf_int(t_format *t_format_spec, va_list ap);
 int				ft_printf_pointer(t_format *format_spec, va_list ap);
 int				ft_printf_unsigned_int(t_format *format_spec, va_list ap);
 int				ft_printf_hexadecimal(t_format *format_spec, va_list ap);
+int				ft_printf_percent(t_format *format_spec);
 char			*ft_ntoa_flag(long long n, long long base, t_format *format_spec);
-char			*ft_ptoa_flag(size_t n, size_t base, t_format *format_spec);
+char			*ft_ptoa_flag(unsigned long long n, unsigned long long base,
+				t_format *format_spec);
 char			base_to_base(long long idx, t_format *format_spec);
+size_t			zero_counter(const char *str);
+void			put_pointer(unsigned long long pos_n, unsigned long long base,
+				char *new, t_format *format_spec);
+size_t			ptr_base_len(unsigned long long n, unsigned long long base,
+				t_format *format_spec);
 
 #endif

@@ -37,4 +37,6 @@ int main()
 	printf("%-10c\n%10c\n", 'a', 'b');
 	//ft_printf("last : %-2147483648c\n", 'a');
 	//printf("last : %-2147483648c\n", 'a');
+	printf("%010.1%\n");
+	ft_printf("%010.1%\n");
 }
