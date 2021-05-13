@@ -35,4 +35,6 @@ int main()
 	printf("%-*cdone--\n", -10, '*');
 	ft_printf("%-10c\n%10c\n", 'a', 'b');
 	printf("%-10c\n%10c\n", 'a', 'b');
+	//ft_printf("last : %-2147483648c\n", 'a');
+	//printf("last : %-2147483648c\n", 'a');
 }

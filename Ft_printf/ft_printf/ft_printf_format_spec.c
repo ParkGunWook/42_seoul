@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:40:19 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/11 14:25:35 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 10:32:54 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ int				ft_printf_format_spec(const char *str,
 	get_format(str, format_spec, ap);
 	type = format_spec->type;
 	if (type == CHAR || type == INT)
-		type == CHAR ? ft_printf_char(format_spec, ap) :
-		ft_printf_int(format_spec, ap);
+		return (type == CHAR ? ft_printf_char(format_spec, ap) :
+		ft_printf_int(format_spec, ap));
 	else if (type == STRING)
-		ft_printf_string(format_spec, ap);
+		return (ft_printf_string(format_spec, ap));
 	/*else if (type == POINTER)
-		ft_printf_pointer(format_spec, ap);
+		return (ft_printf_pointer(format_spec, ap));
 	else if (type == UNSIGNED_INT)
 		ft_printf_unsigned_int(format_spec, ap);
 	else if (type == S_HEXADECIMAL || type == L_HEXADECIMAL)

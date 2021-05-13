@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 22:01:57 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/11 21:24:39 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 09:35:15 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 static size_t	ft_update_flag_option(const char *str, t_format *format_spec)
 {
-	if (*str == '0')
+	if (format_spec->width != -1 || format_spec->width != -1
+	|| format_spec->length != -1)
+		return (0);
+	else if (*str == '0')
 		format_spec->flags[ZERO_FLAG] = 1;
 	else if (*str == '-')
 		format_spec->flags[MINUS_FLAG] = 1;
@@ -36,7 +39,8 @@ static size_t	ft_update_width_option(const char *str,
 	int		n;
 	char	*new;
 
-	if (format_spec->width != -1)
+	if (format_spec->width != -1 || format_spec->precision != -1 ||
+	format_spec->length != -1)
 		return (0);
 	n = (*str == '*') ? va_arg(ap, int) : ft_atoi(str);
 	if (*str == '*' && n == -2147483648)
@@ -60,7 +64,7 @@ static size_t	ft_update_precision_option(const char *str,
 	int		n;
 	char	*new;
 
-	if (format_spec->precision != -1)
+	if (format_spec->precision != -1 || format_spec->length != -1)
 		return (0);
 	if (*(str + 1) != '*' && *(str + 1) != '-' &&
 		!('0' <= *(str + 1) && *(str + 1) <= '9'))
