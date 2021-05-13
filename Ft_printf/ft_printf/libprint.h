@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 14:21:43 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/13 21:23:20 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 21:31:17 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ void			put_pointer(unsigned long long pos_n, unsigned long long base,
 				char *new, t_format *format_spec);
 size_t			ptr_base_len(unsigned long long n, unsigned long long base,
 				t_format *format_spec);
+size_t			init_precision(t_format *format_spec);
 
 #endif

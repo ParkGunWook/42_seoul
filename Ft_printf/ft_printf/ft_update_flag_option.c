@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 22:01:57 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/13 21:13:04 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/13 21:31:34 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,7 @@ static size_t	ft_update_precision_option(const char *str,
 		return (0);
 	if (*(str + 1) != '*' && *(str + 1) != '-' &&
 		!('0' <= *(str + 1) && *(str + 1) <= '9'))
-	{
-		format_spec->precision = 0;
-		format_spec->flags[ZERO_FLAG] = 0;
-		return (1);
-	}
+		return (init_precision(format_spec));
 	n = *(str + 1) == '*' ? va_arg(ap, int) : ft_atoi(str + 1);
 	new = ft_itoa(n);
 	if (*(str + 1) == '0' && n == 0)
