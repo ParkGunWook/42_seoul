@@ -4,35 +4,12 @@
 ==========================================
 
 |AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
-|BBBBBBBBBBBBBBBBBBBBBBBBBb
-|CCCCCCCCCCCCCCCCc
-|DDDDDDd
-|FFFFFFFFFFFFFFFFFFFFFFFFFf
-|GGGGGGGGGGGGg
-|IIIIIIIIIIIIIIIIIIIIIIIIIi
-|JJJJJJJJJj
-|LLLLLLLLLLLLLLLLl
-|NNNNNNNNNNNNNNNNNNNn
-|PPPPPPPPPPPPPPPPPPp
-|RRRRRRRRRRRRRr
-|TTTTt
-|WWWWw
-|AAAAa
-|i
-|PPPPPPPp
-|Ss
-|VVVVv
-|YYYYYYYYYYYYYYYYy
-|AAAAAAAAAAAAAAAa
-|CCCCCCCCCCCCCCCCCCc
-|d
-|FFFFFFFFFf
-|HHHHHHHHHHHHHHHHHHHHHHh
-|IIIIIIIIIi
-|KKKKKKKKKKKKKKKKKKKKKKKKKKKKk
-|LLLLLLLLLLLLLLLLLLl
-|MMMMMMMMMm
-|Nn
+|BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBb
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc
+|DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd
+|EEEEEEEEEEEEEEEEEEEEEEEEEEEEEe
+|
+|
 
 Not Good - Wrong Number Of Lines
 
@@ -40,12 +17,7 @@ Not Good - Wrong Number Of Lines
 ========= TEST 2 : Empty Lines ===========
 ==========================================
 
-|Cette ligne se termine par un point.
-|gne suivante est vide.BBBb
-|ntes sont vides€
-|s.
-
-
+|
 
 Not Good - Wrong Number Of Lines
 
@@ -63,7 +35,6 @@ Right number of lines
 
 |
 
-
 Not Good - Wrong Number Of Lines
 
 ==========================================
@@ -72,19 +43,15 @@ Not Good - Wrong Number Of Lines
 
 |
 
-
-
-
-
 Not Good - Wrong Number Of Lines
 
 ==========================================
 ============== TEST 6 : 42 ===============
 ==========================================
 
-|answer to life the universe and everythin
-|answer to life the universe and everything
-|answer to life the universe and everything-
+|
+|
+|
 
 Right number of lines
 
@@ -92,18 +59,7 @@ Right number of lines
 ============= TEST 7 : Marge =============
 ==========================================
 
-   OOOO€
-OOOOOOO€
-OOOOOOO€
-  OOOOOOOOOOOOOOOOOOOOOOOOOOOO
-  OOOOOOOOOOOOOO
-  
-OOOOOOOOOOOOOOOO
-_|OOOOOOOOOOOOOO
-  O/c   \__/ --.
- '\_______)/ --.
-     oooooooo
-    /        \
+
 
 Not Good - Wrong Number Of Lines
 
@@ -111,5 +67,5 @@ Not Good - Wrong Number Of Lines
 ========= TEST 8 : Wrong Input ===========
 ==========================================
 
-Well Done, you return -1 if no FD
+Not Good, you don't return -1 if no FD
 

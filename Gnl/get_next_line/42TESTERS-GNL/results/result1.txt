@@ -82,7 +82,7 @@ Right number of lines
 |Les 2 lignes suivantes sont videsa ligne suivant
 |
 |
-|Et encore les 2 suivantes.t vide
+|Et encore les 2 suivantes.
 |
 |
 
@@ -131,30 +131,30 @@ Right number of lines
 ============= TEST 7 : Marge =============
 ==========================================
 
-   OOOO 
+   OOOOÀ
  OOOOOOOOO
 OOOOOOOOOOOO
 OOOOOOOOOOOOO
 OOOOOOOOOOOOOO
 OOOOOOOOOOOOOO
- OOOOOOOOOOOOOO 
- OOOOOOOOOOOOOO 
- OOOOOOOOOOOOOO 
+ OOOOOOOOOOOOOOÀ
+ OOOOOOOOOOOOOOÀ OOOOOOOOOOOOOOÀ
+ OOOOOOOOOOOOOOÀ
+  OOOOOOOOOOOOOO OOOOOOOOOOOOOOÀ
   OOOOOOOOOOOOOO
   OOOOOOOOOOOOOO
-  OOOOOOOOOOOOOO
-  OOOOOOOOOOOOOO
+  OOOOOOOOOOOOOO  OOOOOOOOOOOOOO
    OOOOOOOOOOOOOO
    OOOOOOOOOOOOOO
    OOOOO \_| \_|O
    OOOO \/  \/  \
-   OOOO (o   )o  ) universe and 
-   O/c   \__/ --.) universe and 
-   O\_   ,     -') universe and 
-    O|  '\_______) universe and 
-     |       _)     O|  '\_______) universe and 
-     |      |_) 
-     oooooooo_) 
+   OOOO (o   )o  )
+   O/c   \__/ --.)
+   O\_   ,     -')
+    O|  '\_______)
+     |       _)À
+     |      |
+     oooooooo
     /        \
 
 Right number of lines

@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 17:07:46 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/15 16:35:04 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/15 20:05:33 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,36 +47,32 @@ size_t		endl_is_in_string(char *buff, size_t num_read)
 	idx = 0;
 	while(idx < num_read)
 	{
-		if (!buff[idx])
-			return (idx);
 		if (buff[idx] == '\n')
+			return (idx);
+		if (!buff[idx])
 			return (idx);
 		idx++;
 	}
 	return (idx);
 }
 
-size_t		get_flag(size_t num_read, size_t endl_idx, size_t save_idx)
+size_t		get_flag(size_t num_read, size_t endl_idx)
 {
 	if (num_read < 0)
 	{
 		return (ERROR);
 	}
-	else if (save_idx != 0)
-	{
-		return (LOAD_SAVE);
-	}
 	else if (num_read < BUFFER_SIZE)
 	{
 		return (READ_DONE);
 	}
-	else if (num_read == BUFFER_SIZE && endl_idx == num_read)
-	{
-		return (GET_ALL);
-	}
 	else if (num_read == BUFFER_SIZE && endl_idx < num_read)
 	{
 		return (SAVE_PART);
+	}
+	else if (num_read == BUFFER_SIZE && endl_idx == num_read)
+	{
+		return (GET_ALL);
 	}
 	return (ERROR);
 }

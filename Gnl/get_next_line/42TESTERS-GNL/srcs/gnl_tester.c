@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gnl_tester.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchardin <mchardin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:41:13 by mchardin          #+#    #+#             */
-/*   Updated: 2019/12/15 17:19:49 by mchardin         ###   ########.fr       */
+/*   Updated: 2021/05/15 21:50:16 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int main()
 	int             i;
 	int             j;
 	char    		*line = 0;
-	char			*lineadress[66];
-	
+	//char			*lineadress[66];
+
 	j = 1;
-	printf("\n==========================================\n");
+	/*printf("\n==========================================\n");
 	printf("========== TEST 1 : The Alphabet =========\n");
 	printf("==========================================\n\n");
 
@@ -214,7 +214,7 @@ int main()
 		printf("\nRight number of lines\n");
 	else if (j != 1)
 		printf("\nNot Good - Wrong Number Of Lines\n");
-	j = 1;
+	j = 1;*/
 	printf("\n==========================================\n");
 	printf("============= TEST 7 : Marge =============\n");
 	printf("==========================================\n\n");

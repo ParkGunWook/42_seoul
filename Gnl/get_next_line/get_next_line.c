@@ -6,103 +6,89 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 17:07:49 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/15 17:38:23 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/15 21:44:49 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-size_t		hello;
-
-int			load_save_buff(int fd, char *save_buff, char **line, size_t *nums);
-int			recursive_get_next_line(int fd, char **line, size_t idx);
-
-int			recursive_get_next_line(int fd, char **line, size_t idx)
+int			recursive_get_next_line(int fd, char **line, char *save_buff, size_t idx)
 {
-	static char		save_buff[BUFFER_SIZE + 1];
 	char			read_buff[BUFFER_SIZE + 1];
 	size_t			nums[3];
 	int				flag;
 
 	ft_memset(read_buff, 0, BUFFER_SIZE + 1);
 	nums[READ] = read(fd, read_buff, BUFFER_SIZE);
-	nums[SAVE] = endl_is_in_string(save_buff, BUFFER_SIZE + 1);
 	nums[ENDL] = endl_is_in_string(read_buff, nums[READ]);
-	/*write(1, "read : ", 7);
-	write(1, read_buff, BUFFER_SIZE);
-	write(1, "\n", 1);*/
-	flag = get_flag(nums[READ], nums[ENDL], nums[SAVE]);
+	flag = get_flag(nums[READ], nums[ENDL]);
 	if (flag == READ_DONE)
 	{
 		if (!(*line = (char*)malloc(sizeof(char) * (idx + nums[READ]))))
 			return (-1);
-		hello = idx + nums[READ] + 1;
 		ft_memcpy(*line + idx, read_buff, nums[READ]);
 		(*line)[idx + nums[READ]] = 0;
-		//printf("hello : %zu, %d\n", hello, BUFFER_SIZE);
+		ft_memset(save_buff, 0, BUFFER_SIZE + 1);
+		//printf("hello : %d\n", BUFFER_SIZE);
 	}
 	else if (flag == SAVE_PART)
 	{
-		//write(1, "save part\n", 10);
 		if (!(*line = (char*)malloc(sizeof(char) * (idx + nums[ENDL]))))
 			return (-1);
-		hello = idx + nums[ENDL] + 1;
 		ft_memcpy(*line + idx, read_buff, nums[ENDL]);
 		ft_memset(save_buff, 0, BUFFER_SIZE + 1);
-		ft_memcpy(save_buff + nums[ENDL] + 1, read_buff, nums[ENDL] - nums[ENDL] + 1);
-	}
-	else if (flag == LOAD_SAVE)
-	{
-		flag = load_save_buff(fd, save_buff, line, nums);
+		ft_memcpy(save_buff, read_buff + nums[ENDL] + 1, BUFFER_SIZE - nums[ENDL] - 1);
+		//printf("save nums[ENDL] : %zu\n", nums[ENDL]);
 	}
 	else if (flag == GET_ALL)
 	{
-		flag = recursive_get_next_line(fd, line, idx + BUFFER_SIZE);
+		flag = recursive_get_next_line(fd, line, save_buff, idx + BUFFER_SIZE);
 		//write(1, "ret\n", 4);
-		ft_memcpy(*line + idx, read_buff, BUFFER_SIZE);
+		ft_memcpy((*line) + idx, read_buff, BUFFER_SIZE);
+		//printf("%p\n", ((*line) + idx));
+		//write(1, line + idx, BUFFER_SIZE);
 	}
 	return (flag);
 }
 
-int			load_save_buff(int fd, char *save_buff, char **line, size_t *nums)
+int get_next_line(int fd, char **line)
 {
-	size_t	size_save;
+	static char		save_buff[BUFFER_SIZE + 1];
+	int		ret;
 	char	*temp_save;
+	size_t	save_size;
+	size_t	endl_idx;
 
-	size_save = 0;
-	while (*(save_buff + size_save))
-		size_save++;
-	if (nums[SAVE] == size_save)
+	save_size = 0;
+	endl_idx = 0;
+	while (save_buff[save_size])
+		save_size++;
+	while (save_buff[endl_idx] != '\n' && endl_idx < save_size)
+		endl_idx++;
+	if (endl_idx == save_size)
 	{
-		if (!(temp_save = (char*)malloc(sizeof(char) * nums[SAVE])))
+		//printf("Save loading : %zu %zu\n", endl_idx, endl_idx);
+		if (!(temp_save = (char*)malloc(sizeof(char) * endl_idx)))
 			return (-1);
-		ft_memcpy(temp_save, save_buff, nums[SAVE]);
-		ft_memset(temp_save, 0, nums[SAVE]);
-		if (nums[READ] != 0)
-			recursive_get_next_line(fd, line, nums[SAVE]);
-		else
-			if (!(*line = (char*)malloc(sizeof(char) * nums[SAVE])))
-				return (-1);
-		ft_memcpy(line, temp_save, nums[SAVE]);
+		ft_memcpy(temp_save, save_buff, endl_idx);
+		//ft_memset(temp_save, 0, endl_idx);
+		ret = recursive_get_next_line(fd, line, save_buff, endl_idx);
+		ft_memcpy(*line, temp_save, endl_idx);
 		free(temp_save);
 	}
 	else
 	{
-		if (!(*line = (char*)malloc(sizeof(char) * nums[SAVE])))
+		//printf("Not func : %zu %zu\n", endl_idx, save_size);
+		if (!(*line = (char*)malloc(sizeof(char) * endl_idx)))
 			return (-1);
-		ft_memcpy(*line, save_buff, nums[SAVE]);
-		ft_memcpy(save_buff, save_buff + nums[SAVE], size_save - nums[SAVE]);
-		ft_memset(save_buff + nums[SAVE], 0, size_save - nums[SAVE]);
+		ft_memcpy(*line, save_buff, endl_idx);
+		ft_memcpy(save_buff, save_buff + endl_idx, save_size - endl_idx);
+		ft_memset(save_buff + endl_idx + 1, 0, save_size - endl_idx);
+		ret = (endl_idx + 1 == save_size) ? 0 : 1;
+		if (ret == 0)
+			ft_memset(save_buff, 0, BUFFER_SIZE);
 	}
-	return (nums[READ] == 0 && size_save == nums[SAVE] ? 0 : 1);
-}
-
-int get_next_line(int fd, char **line)
-{
-	int		ret;
-
-	ret = recursive_get_next_line(fd, line, 0);
 	//write(1, "WORKS : ", 7);
 	//write(1, *line, hello);
 	return (ret);
