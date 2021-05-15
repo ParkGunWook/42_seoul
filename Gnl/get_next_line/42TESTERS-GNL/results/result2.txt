@@ -1,0 +1,164 @@
+
+==========================================
+========== TEST 1 : The Alphabet =========
+==========================================
+
+|AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
+|BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBb
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc
+|DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd
+|EEEEEEEEEEEEEEEEEEEEEEEEEEEEEe
+|FFFFFFFFFFFFFFFFFFFFFFFFFFFf
+|GGGGGGGGGGGGGGGGGGGGGGGGGGg
+|HHHHHHHHHHHHHHHHHHHHHHHHHHh
+|IIIIIIIIIIIIIIIIIIIIIIIIIi
+|JJJJJJJJJJJJJJJJJJJJJJJj
+|KKKKKKKKKKKKKKKKKKKKKKk
+|LLLLLLLLLLLLLLLLLLLLLLl
+|MMMMMMMMMMMMMMMMMMMMMm
+|NNNNNNNNNNNNNNNNNNNn
+|OOOOOOOOOOOOOOOOOOo
+|PPPPPPPPPPPPPPPPPPp
+|QQQQQQQQQQQQQQQQQq
+|RRRRRRRRRRRRRRRr
+|SSSSSSSSSSSSSSs
+|TTTTTTTTTTTTTTt
+|UUUUUUUUUUUUUu
+|VVVVVVVVVVVv
+|WWWWWWWWWWw
+|XXXXXXXXXXx
+|YYYYYYYYYy
+|ZZZZZZZz
+|AAAAAAa
+|BBBBBBb
+|CCCCCc
+|DDDd
+|EEe
+|FFf
+|Gg
+|
+|i
+|JJj
+|KKKk
+|LLLl
+|MMMMm
+|NNNNNNn
+|OOOOOOOo
+|PPPPPPPp
+|QQQQQQQQq
+|RRRRRRRRRRr
+|SSSSSSSSSSSs
+|TTTTTTTTTTTt
+|UUUUUUUUUUUUu
+|VVVVVVVVVVVVVVv
+|WWWWWWWWWWWWWWWw
+|XXXXXXXXXXXXXXXx
+|YYYYYYYYYYYYYYYYy
+|ZZZZZZZZZZZZZZZZZZz
+|AAAAAAAAAAAAAAAAAAAa
+|BBBBBBBBBBBBBBBBBBBb
+|CCCCCCCCCCCCCCCCCCCCc
+|DDDDDDDDDDDDDDDDDDDDDDd
+|EEEEEEEEEEEEEEEEEEEEEEEe
+|FFFFFFFFFFFFFFFFFFFFFFFf
+|GGGGGGGGGGGGGGGGGGGGGGGGg
+|HHHHHHHHHHHHHHHHHHHHHHHHHHh
+|IIIIIIIIIIIIIIIIIIIIIIIIIIIi
+|JJJJJJJJJJJJJJJJJJJJJJJJJJJj
+|KKKKKKKKKKKKKKKKKKKKKKKKKKKKk
+|LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLl
+|MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMm
+|NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNn
+
+Right number of lines
+
+==========================================
+========= TEST 2 : Empty Lines ===========
+==========================================
+
+|Cette ligne se termine par un point.
+|a ligne suivante est vide.BBBBBb
+|Les 2 lignes suivantes sont videsnt.
+|
+|Et encore les 2 suivantes.t vide
+|
+
+Not Good - Wrong Number Of Lines
+
+==========================================
+======== TEST 3 : The Empty File =========
+==========================================
+
+|
+
+Right number of lines
+
+==========================================
+========= TEST 4 : One New Line ==========
+==========================================
+
+|
+
+
+Not Good - Wrong Number Of Lines
+
+==========================================
+========= TEST 5 : Four New Lines ========
+==========================================
+
+|
+
+|
+
+|
+
+Not Good - Wrong Number Of Lines
+
+==========================================
+============== TEST 6 : 42 ===============
+==========================================
+
+|answer to life the universe and everythin
+|answer to life the universe and everything
+|answer to life the universe and everything-
+
+Right number of lines
+
+==========================================
+============= TEST 7 : Marge =============
+==========================================
+
+   OOOOP
+ OOOOOOOOO
+OOOOOOOOOOO
+OOOOOOOOOOOOO
+OOOOOOOOOOOOOO
+OOOOOOOOOOOOOO
+ OOOOOOOOOOOOOOP
+ OOOOOOOOOOOOOOP
+ OOOOOOOOOOOOOOP
+  OOOOOOOOOOOOOO
+ OOOOOOOOOOOOOOO
+  OOOOOOOOOOOOOO
+ OOOOOOOOOOOOOOO
+   OOOOOOOOOOOOOO
+   OOOOOOOOOOOOOO
+   OOOOO \_| \_|O
+   OOOO \/  \/  \
+   OOOO (o   )o  )
+  O/c   \__/ --.   OOOO (o   )o  )
+  O\_   ,     -'
+   O|  '\_______)
+     |       _)P   O|  '\_______)
+     |      |_)P
+     oooooooo_)P
+    /        \
+
+Right number of lines
+
+==========================================
+========= TEST 8 : Wrong Input ===========
+==========================================
+
+Well Done, you return -1 if no FD
+
