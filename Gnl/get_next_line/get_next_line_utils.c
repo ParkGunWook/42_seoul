@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 17:07:46 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/15 20:05:33 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/17 17:48:51 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ size_t		get_flag(size_t num_read, size_t endl_idx)
 	{
 		return (ERROR);
 	}
-	else if (num_read < BUFFER_SIZE)
+	else if (num_read == 0 || (num_read < BUFFER_SIZE && num_read == endl_idx))
 	{
 		return (READ_DONE);
 	}
-	else if (num_read == BUFFER_SIZE && endl_idx < num_read)
+	else if (num_read <= BUFFER_SIZE && endl_idx < num_read)
 	{
 		return (SAVE_PART);
 	}

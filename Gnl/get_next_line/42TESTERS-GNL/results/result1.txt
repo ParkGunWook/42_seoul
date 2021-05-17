@@ -77,9 +77,9 @@ Right number of lines
 ==========================================
 
 |Cette ligne se termine par un point.
-|La ligne suivante est vide.BBBBB
+|La ligne suivante est vide.
 |
-|Les 2 lignes suivantes sont videsa ligne suivant
+|Les 2 lignes suivantes sont vides
 |
 |
 |Et encore les 2 suivantes.
@@ -131,28 +131,28 @@ Right number of lines
 ============= TEST 7 : Marge =============
 ==========================================
 
-   OOOOÀ
+   OOOO
  OOOOOOOOO
 OOOOOOOOOOOO
 OOOOOOOOOOOOO
 OOOOOOOOOOOOOO
 OOOOOOOOOOOOOO
- OOOOOOOOOOOOOOÀ
- OOOOOOOOOOOOOOÀ OOOOOOOOOOOOOOÀ
- OOOOOOOOOOOOOOÀ
-  OOOOOOOOOOOOOO OOOOOOOOOOOOOOÀ
+ OOOOOOOOOOOOOO
+ OOOOOOOOOOOOOO
+ OOOOOOOOOOOOOO
   OOOOOOOOOOOOOO
   OOOOOOOOOOOOOO
-  OOOOOOOOOOOOOO  OOOOOOOOOOOOOO
+  OOOOOOOOOOOOOO
+  OOOOOOOOOOOOOO
    OOOOOOOOOOOOOO
    OOOOOOOOOOOOOO
    OOOOO \_| \_|O
    OOOO \/  \/  \
    OOOO (o   )o  )
-   O/c   \__/ --.)
-   O\_   ,     -')
+   O/c   \__/ --.
+   O\_   ,     -'
     O|  '\_______)
-     |       _)À
+     |       _)
      |      |
      oooooooo
     /        \
