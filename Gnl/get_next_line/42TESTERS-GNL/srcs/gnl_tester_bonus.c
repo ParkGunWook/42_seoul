@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gnl_tester_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchardin <mchardin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:41:21 by mchardin          #+#    #+#             */
-/*   Updated: 2019/11/27 10:28:21 by mchardin         ###   ########.fr       */
+/*   Updated: 2021/05/17 23:05:07 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,5 +307,6 @@ int main()
 		printf("Well Done, you return -1 if read fails\n\n");
 	else
 		printf("Not Good, you don't return -1 if read fails\n\n");
+	// dsystem("leaks a.out");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:41:13 by mchardin          #+#    #+#             */
-/*   Updated: 2021/05/17 17:49:53 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/17 22:59:51 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,5 +265,6 @@ int main()
 		printf("Well Done, you return -1 if no FD\n\n");
 	else
 		printf("Not Good, you don't return -1 if no FD\n\n");
+	//system("leaks a.out");
 	return (0);
 }
