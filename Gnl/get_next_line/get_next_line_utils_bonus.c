@@ -6,13 +6,13 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 17:07:46 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/18 00:06:55 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/18 11:20:48 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char		*allocate_memory(long long size)
+char		*allocate_string(long long size)
 {
 	char *new;
 
@@ -50,7 +50,7 @@ void		*ft_memset(void *b, int c, long long len)
 	return (b);
 }
 
-long long		endl_is_in_string(char *buff, long long num_read)
+long long	endl_is_in_string(char *buff, long long num_read)
 {
 	long long		idx;
 
