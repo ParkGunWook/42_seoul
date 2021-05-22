@@ -24,9 +24,11 @@ $(LIBFT) :
 
 clean :
 	rm -f $(OBJS)
+	make clean -C ./libft
 
 fclean :
 	rm -f $(NAME) $(OBJS)
+	make fclean -C ./libft
 
 re :
 	make fclean

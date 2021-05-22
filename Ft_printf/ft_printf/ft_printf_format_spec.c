@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:40:19 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/13 21:01:57 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/14 12:00:51 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,6 @@ int				ft_printf_format_spec(const char *str,
 		ft_printf_hexadecimal(format_spec, ap);
 	else if (type == PERCENT)
 		ft_printf_percent(format_spec);
-	/*else if (type == COUNTER)
-		ft_printf_counter(format_spec, ap);
-	else if (type == FLOAT)
-		ft_printf_float(format_spec, ap);
-	else if (type == GRANULATED_FLOAT)
-		ft_printf_granulated(format_spec, ap);*/
 	else
 		return (0);
 	return (1);

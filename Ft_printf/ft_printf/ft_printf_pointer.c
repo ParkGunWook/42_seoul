@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 10:11:00 by gpark             #+#    #+#             */
-/*   Updated: 2021/05/13 21:23:09 by gpark            ###   ########.fr       */
+/*   Updated: 2021/05/14 12:00:58 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ size_t		ptr_base_len(unsigned long long n, unsigned long long base,
 	return (n_len);
 }
 
-int		ft_printf_pointer(t_format *format_spec, va_list ap)
+int			ft_printf_pointer(t_format *format_spec, va_list ap)
 {
 	unsigned long long	pointer;
 	char				*ptr_str;
