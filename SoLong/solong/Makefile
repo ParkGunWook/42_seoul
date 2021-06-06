@@ -6,7 +6,7 @@
 #    By: gpark <gpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/06 15:56:09 by gpark             #+#    #+#              #
-#    Updated: 2021/06/06 17:12:19 by gpark            ###   ########.fr        #
+#    Updated: 2021/06/06 22:21:15 by gpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra
 NAME = so_long
 
 SRCS_DIR = ./srcs
-SRCS_NAME = main.c
+SRCS_NAME = main.c map.c
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_NAME))
 OBJS = $(SRCS:.c=.o)
 
@@ -26,17 +26,19 @@ LIB = $(addprefix $(LIB_DIR)/, libft.a)
 
 MLX_NAME = mlx
 MLX_DIR = ./mlx
-MLX = $(addprefix $(MLX_DIR)/, libmlx.a)
+MLX = $(addprefix $(MLX_DIR)/, libmlx.dylib)
 
+INCLUDES = include/
 
 $(NAME) : $(OBJS)
 	make -C $(LIB_DIR) all
 	make -C $(MLX_DIR) all
-	$(CC) $(CFLAGS) -L$(LIB_DIR) -l$(LIB_NAME) -L$(MLX_DIR) -l$(MLX_NAME) \
+	$(CC) $(CFLAGS) -I$(INCLUDES) -L$(LIB_DIR) -l$(LIB_NAME) -L$(MLX_DIR) -l$(MLX_NAME) \
 		$^ -o $@
+	@install_name_tool -change libmlx.dylib ./mlx/libmlx.dylib $(NAME)
 
 $(SRCS_DIR)/%.o : $(SRCS_DIR)/%.c
-	$(CC) $(CFLAGS) -I$(MLX_DIR) -I$(LIB_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INCLUDES) -I$(MLX_DIR) -I$(LIB_DIR) -c $< -o $@
 
 
 all : $(NAME)

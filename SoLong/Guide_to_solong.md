@@ -144,3 +144,127 @@ X 윈도우는 유닉스를 위한 네트워크 기반 그래픽 시스템이다
 
 **mlx_init()**이 디스플레이 연결을 실패하면, 그것은 널값을 리턴하거나 다른 경우에는 널 포인터가 연결 식별자에 리턴된다.
 
+# man mlibx new window
+
+## 시놉시스
+
+`void *mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);`
+`int mlx_clear_window(void *mlx_ptr, void *win_ptr);`
+`int mlx_destroy_window(void *mlx_ptr, void *win_ptr);`
+
+## 설명
+
+`mlx_new_window()` 함수는 새로운 윈도우를 스크린에 띄우고, 사이즈 파라미터를 통해서 그것의 사이즈를 결정한다 그리고 타이틀은 윈도우의 타이틀 바 위에서 보여진다. mlx_ptr 파라미터는 mlx_init()에서 리턴되는 값이다. `mlx_new_window()`는 보이드 포인터 윈도우 식별자를 리턴하고 다른 미니립스 콜에 의해서 사용된다. 미니 립엑스는 임의의 숫자의 분리된 윈도우를 관리할 수 있다.
+
+`mlx_clear_window()`와 `mlx_destroy_window()`는 각각 주어진 화면을 부수고 클리어한다. 그들은 둘다 같은 파라미터를 가진다. `mlx_ptr`은 스크린 연결 식별자이고 `win_ptr`은 윈도우 식별자이다.
+
+## 리턴 값
+
+만약 `mlx_new_window()`가 새로운 윈도우를 만드는 것에 실패하면, 그것은 널을 리턴한다. 다른 경우에는 널이 아닌 포인터를 mlx window 식별자로서 리턴한다. `mlx_clear_window`와 `mlx_destroy_window`는 둘다 아무것도 리턴하지 않는다.
+
+# mlx mlibx pixel put
+
+## 시놉시스
+
+`int mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);`
+`int mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string);`
+
+## 설명
+
+`mlx_pixel_put()` 함수는 정의된 픽셀을 win_ptr을 사용해서 그린다. 원점인 (0, 0)은 좌상단이다. 그리고 증가하면서 우 하단으로 간다. 물론 커넥션 식별자인 mlx_ptr이 필요하다.
+
+`mlx_string_put()` 함수도 같다. 픽셀대신에 특정한 스트링은 x, y에 주어질 것이다.
+
+두 함수 모두 윈도우 밖을 버린다??. 이것이 `mlx_pixel_put`을 느리게한다. 이미지를 사용해보자.
+
+## 컬러 관리
+
+컬러 파라미터는 인티저 타입이다. 보여지는 컬러는 이 정수로 인코드된다. 모든 보여지는 컬러는 3가지 베이직 컬러로 나뉘는데, 빨, 초, 파이다. 3가지는 0~255의 범위를 가진다. 이런 세가지 값은 정확한 색을 보이기 위해서 정수에 들어간다. 3바이트가 색으로 채워진다.(lsb)
+인티저를 채우는 동안에, 너는 엔디안 문제를 확실히 해결해라. 블루가 항상 가장 최소비트이다.
+
+하드웨어에 따라서, 가장 큰 비트는 투명도를 조절한다. 조심해라, 오픈지엘 클래식의 반대에서, 그것은 오파시티가 아니다.
+
+# mlx mlibx new image
+
+## 시놉시스
+
+`void *mlx_new_image(void *mlx_ptr, int width, int height);`
+`char *mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian);`
+`int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y)`
+`unsigned int mlx_get_color_value(void *mlx_ptr, int color);`
+`void *mlx_xpm_to_image(void *mlx_ptr, char **xpm_data, int *width, int *height)`
+`void *xpm_file_to_image(void *mlx_ptr, char *filename, int *width, int *height)`
+`void *png_file_to_image(void *mlx_ptr, char *filename, int *width, int *height)`
+`int mlx_destroy_image(void *mlx_ptr, void *img_ptr)`
+
+## 설명
+
+`mlx_new_image`는 메모리안에서 새로운 이미지를 생성한다. 그것은 보이드 포인터 식별자를 리턴한다. 이것은 이미지를 조절하는데 쓰인다. 그것은 오직 만들 이미지의 사이즈만 필요하다. 엠엘엑스 포인터는 당연히 필요하다.
+
+유저는 이미지내부를 그릴수 있고 특정 윈도우에 원할때 마다 이미지를 덤프할 수 있다. 이것은 `mlx_put_image_to_window`로 실현된다. 세개의 식별자가 여기서 필요하다. 디스플레이에 연결, 윈도우가 쓸것, 이미지(각각 mlx_ptr, win_optr, img_ptr) x,y는 이미지가 어디에 있을지 이다.
+
+`mlx_get_data_addr()`은 생성된 이미지에 관한 정보를 리턴하고, 유저가 그것을 수정하게 허용한다. `img_ptr`파라미터는 사용할 이미지를 특정한다. 3가지 파라미터가 있다. bits_per_pixel은 비트의 숫자에 맞게 채워지고 특정한 색을 의미한다.(이미지의 뎁스라고도 불린다.) `size_line`은 바이트의 수이고 메모리에 이미지의 라인을 저장한다. 이 정보는 이미지에서 한가지 라인에서 다른 라인으로 이동할 때 필요하다. `endian`은 너가 이미지안의 픽셀 컬러를 리틀로할지 빅으로할지 정한다.(리틀은 0, 빅은 1)
+
+`mlx_get_data_addr()`은 `char *` 주소를 리턴한다. 이미지가 저장된 메모리 영역의 시작을 말한다. 이 주소로부터, 첫번째 `bits_per_pixel` 비트는 이미지의 첫 줄의 첫 픽셀의 수를 대표한다. `bits_per_pixel`의 두번째 그룹은 첫 라인의 두번째 픽셀을 대표한다. `size_line`을 향한 주소는 두번째 라인의 시작을 찾기위해서 추가한다. 너는 이미지에 맘껏 도달할 수 있을 것이다.
+
+`mlx_destroy_image`는 주어진 이미지를 부순다.
+
+## 이미지안에 컬러를 저장하기
+
+디스플레이에 따라서, 픽셀을 저장하는 비트의 숫자는 바뀐다. 유저는 보통 RGB모드로 컬러를 대표하고, 하나의 바이트로 각 컴포넌트를 사용한다. 이 것은 반드시 이미지의 필요를 `bits_per_pixel`에 맞춰야한다. 이것이 `mlx_get_color_value`의 역할이다. 그것은 표준 RGB 컬러 파라미터를 받아서 인트 값으로 리턴한다. 피트 퍼 픽셀은 lsb의 값이 이미지에 저장되어있다. 너는 이 함수를 사용해서 만약 컨버전을 피할 수 있다.
+
+lsb는 컴퓨터의 엔디안에 맞춰져있는 것을 명심해라, 만약 이미지의 엔디안이 다르면, 사용되기전에 이상해 질 수 있다.
+
+## XPM, PNG 이미지
+
+`mlx_xpm_to_image()`, `mlx_xpm_file_to_image`, `mlx_png_file_to_image`함수는 새로운 이미지를 같은 방법으로 만들어 낼 것이다. 그들은 특정한 xpm_data또는 파일 이름으로 채운다. 미니 엘아비엑스는 표준 Xpm과 png라이브러리를 사용하지 않는다. 너는 두 타입의 이미지를 모조리 읽지는 못할 것이다.
+
+## 리턴값
+
+실패하면 항상 널포인터를 준다.
+
+# man mlx_loop
+
+## 시놉시스
+
+`int mlx_loop(void *mlx_ptr);`
+`int mlx_key_hook(void *win_ptr, int (*funct_ptr)(), void *param)`
+`int mlx_mouse_hook(void *win_ptr, int (*funct_ptr)(), void *param)`
+`int mlx_expose_hook(void *win_ptr, int (*funct_ptr)(), void *param)`
+`int mlx_loop_hook(void *win_ptr, int (*funct_ptr)(), void *param)`
+
+## 이벤트
+
+그래피 시스템은 양방향이다. 한 쪽에서는, 프로그램은 스크린에 픽셀을 표시하기 위해서 명령을 전달하고 반대편에서는, 그것은 키보드와 마우스의 동작을 스크린에 보낸다. 이를 위해서, 프로그램은 키보드 또는 마우스로부터 이벤트를 받는다.
+
+## 설명
+
+이벤트를 받기위해서 너는 반드시 `mlx_loop()`를 사용해야한다. 그것은 리턴하지 않는다. 그것은 이벤트를 기다리면서 무제한 루프를 돌린다. 그리고 유저가 정의한 함수를 만든다.
+
+너는 다른 함수를 3가지 이벤트로 할당한다.
+
+- 키가 눌러짐.
+- 마우스 버튼이 눌려짐
+- 윈도우의 일부분이 다시 그려짐(이것이 "expose" 이벤트이고, 맥은 걱정 없다.)
+- `mlx_key_hook`, `mlx_mouse_hook`, `mlx_expose_hook`은 정확히 같은 동작을 한다. `func_ptr`은 너가 이벤트가 발생했을때 원하는 함수이다. 이 할당은 윈도우 피티얼에 의해서 정의된다. `parma` 주소는 불려오는 모든 함수를 패스하고 필요한 파라미터를 저장하기 위해서 사용된다.
+
+`mlx_loop_hook` 함수는 이전과 같은데, 그것은 이벤트 없이도 생긴다.
+
+어떤 이벤트를 잡을때 립엑스는 다음의 고정된파라미터를 찾는다.
+
+- `expose_hook(void *param);`
+- `key_hook(int keycode, void *param);`
+- `mouse_hook(int button, int x, int y, void *param);`
+- `loop_hook(void *param);`
+
+이런 함수 이름은 아비터리하다. 그들은 이벤트에 따라서 파라미터를 구별하기 위해서 사용된다. 이런 함수들은 미니립엑스의 일부분은 아니다.
+
+파람은 훅 콜에 정의된 주소이다. 이 주소는 사용되지 않는다. 키와 마우스 이벤트일때, 추가적인 정보가 넘겨진다. 키코드는 어떤 키가 눌렸는지 이다.(x11과함꼐, 인클루드 파일 `keysmdef.h`를 살펴봐라), (x, y)는 윈도우에서의 마우스의 좌표이다. 그리고 버튼은 어떤 버튼이 눌렸는지이다.
+
+## 더 많은 이벤트
+
+미니립엑스는 다른 존재하는 이벤트에 대해서 더욱 제너릭한 것을 제공한다. mlx.h는 mlx_hook()을 제공한다. 이벤트와 마스크 값은 X11의 x.h에서 가져왔다. 몇몇 MacOS이벤트 들은 이런 값에 매핑되어있다. 그것이 말이되면, 마스크는 MacOS에서 결코 사용되지 않는다.
+
+소스코드를 좀봐라.
+
+

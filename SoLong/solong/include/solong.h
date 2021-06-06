@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   solong.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/06 16:24:20 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/06 22:31:14 by gpark            ###   ########.fr       */
+/*   Created: 2021/06/06 21:53:41 by gpark             #+#    #+#             */
+/*   Updated: 2021/06/06 22:28:02 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "solong.h"
+#ifndef SOLONG_H
+# define SOLONG_H
 
-int		main(int argc, char *argv[])
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <string.h>
+
+# include "mlx.h"
+
+# define EMPTY 0
+# define WALL 1
+# define COLLECT 2
+# define EXIT 3
+# define PLAYER 4
+
+typedef struct	s_map
 {
-	int		map_fd;
+	int		**map;
+	int		width;
+	int		height;
+}				t_map;
 
-	if (argc != 2)
-		return (-1);
-	map_fd = open(argv[1], O_RDONLY);
-	printf("map fd : %d\n", map_fd);
-	get_map_info(map_fd, argv[1]);
-	return (0);
-}
+int				get_map_info(int fd, char *filename);
+
+#endif
