@@ -6,7 +6,7 @@
 #    By: gpark <gpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/06 15:56:09 by gpark             #+#    #+#              #
-#    Updated: 2021/06/07 14:16:34 by gpark            ###   ########.fr        #
+#    Updated: 2021/06/07 17:30:47 by gpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ MLX_NAME = mlx
 MLX_DIR = ./mlx
 MLX = $(addprefix $(MLX_DIR)/, libmlx.dylib)
 
-INCLUDES = include/
+INCLUDES = includes/
 
 $(NAME) : $(OBJS)
 	make -C $(LIB_DIR) all
@@ -39,7 +39,6 @@ $(NAME) : $(OBJS)
 
 $(SRCS_DIR)/%.o : $(SRCS_DIR)/%.c
 	$(CC) $(CFLAGS) -I$(INCLUDES) -I$(MLX_DIR) -I$(LIB_DIR) -c $< -o $@
-
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 16:24:20 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/07 17:07:29 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/07 17:16:49 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ int		main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (-1);
+	if (ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4], EXTENSIONS, 4) != 0)
+	{
+		errno = WRONG_EXTENSIONS;
+		perror(strerror(errno));
+		return (0);
+	}
 	map = get_map(argv[1]);
 	if (map == 0)
 	{

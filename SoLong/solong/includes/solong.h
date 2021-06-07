@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 21:53:41 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/07 16:52:59 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/07 17:12:30 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ enum			e_user_error
 	NOT_RECT = -20,
 	INVALID_TILE,
 	NOT_CLOSED,
-	MIN_TILE
+	MIN_TILE,
+	WRONG_EXTENSIONS
 };
+
+# define EXTENSIONS ".ber"
 
 typedef struct	s_map
 {
