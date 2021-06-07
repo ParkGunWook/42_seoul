@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   myloc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/06 16:24:20 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/07 17:07:29 by gpark            ###   ########.fr       */
+/*   Created: 2021/06/07 13:37:50 by gpark             #+#    #+#             */
+/*   Updated: 2021/06/07 14:50:25 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 #include "myloc.h"
+#include <stdio.h>
 
-int		g_mlcnt = 0;
-
-int		main(int argc, char *argv[])
+int		my_aloc(void **ptr, size_t size)
 {
-	t_map	*map;
-
-	if (argc != 2)
-		return (-1);
-	map = get_map(argv[1]);
-	if (map == 0)
-	{
-		perror(strerror(errno));
-		//system("leaks so_long");
-		printf("g_mlcnt : %d\n", g_mlcnt);
+	printf("malloc\n");
+	*ptr = malloc(size);
+	if (!(*ptr))
 		return (0);
-	}
-	printf("g_mlcnt : %d\n", g_mlcnt);
-	return (0);
+	g_mlcnt++;
+	return (size);
+}
+
+void	my_free(void **ptr)
+{
+	printf("free\n");
+	free(*ptr);
+	g_mlcnt--;
+	*ptr = 0;
 }
