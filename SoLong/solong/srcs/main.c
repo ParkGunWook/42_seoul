@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 16:24:20 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/07 17:16:49 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/08 10:34:12 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		g_mlcnt = 0;
 int		main(int argc, char *argv[])
 {
 	t_map	*map;
+	t_mlx	*mlx;
 
 	if (argc != 2)
 		return (-1);
@@ -35,6 +36,7 @@ int		main(int argc, char *argv[])
 		printf("g_mlcnt : %d\n", g_mlcnt);
 		return (0);
 	}
+	mlx = init_struct_mlx(map);
 	printf("g_mlcnt : %d\n", g_mlcnt);
 	return (0);
 }

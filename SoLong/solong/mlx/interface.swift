@@ -36,7 +36,7 @@ let MLX_SYNC_WIN_CMD_COMPLETED = Int32(3)
 @_cdecl("mlx_init")
 public func mlx_init_swift() -> UnsafeRawPointer
 {
-	let mm = MlxMain()	
+	let mm = MlxMain()
 	return (_mlx_bridge_retained(obj:mm))
 }
 
@@ -179,6 +179,7 @@ public func mlx_put_image_to_window_swift(_ mlxptr:UnsafeRawPointer, _ winptr:Un
 @_cdecl("mlx_put_image_to_window_scale")
 public func mlx_put_image_to_window_scale_swift(_ mlxptr:UnsafeRawPointer, _ winptr:UnsafeRawPointer, _ imgptr:UnsafeRawPointer, _ sx:Int32, _ sy:Int32, _ sw:Int32, _ sh:Int32, _ dx:Int32, _ dy:Int32, _ dw:Int32, _ dh:Int32, _ color:UInt32) -> Int32
 {
+	print("hello image putter");
 	let win:MlxWin = _mlx_bridge(ptr:winptr)
 	let img:MlxImg = _mlx_bridge(ptr:imgptr)
 	win.putImageScale(image:img, sx:sx, sy:sy, sw:sw, sh:sh, dx:dx, dy:dy, dw:dw, dh:dh, c:color)
@@ -200,7 +201,7 @@ public func mlx_sync_swift(_ what:Int32, _ param:UnsafeRawPointer) -> Int32
     switch what
     {
 	case MLX_SYNC_IMAGE_WRITABLE:
-		let img:MlxImg = _mlx_bridge(ptr:param); while img.onGPU > 0 {} 
+		let img:MlxImg = _mlx_bridge(ptr:param); while img.onGPU > 0 {}
 	case MLX_SYNC_WIN_FLUSH_CMD:
 		let win:MlxWin = _mlx_bridge(ptr:param); win.flushImages()
 	case MLX_SYNC_WIN_CMD_COMPLETED:

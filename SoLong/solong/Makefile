@@ -6,7 +6,7 @@
 #    By: gpark <gpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/06 15:56:09 by gpark             #+#    #+#              #
-#    Updated: 2021/06/07 17:30:47 by gpark            ###   ########.fr        #
+#    Updated: 2021/06/08 10:29:16 by gpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra
 NAME = so_long
 
 SRCS_DIR = ./srcs
-SRCS_NAME = main.c myloc.c map.c map_utils.c
+SRCS_NAME = main.c myloc.c map.c map_utils.c mlx.c
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_NAME))
 OBJS = $(SRCS:.c=.o)
 
