@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 21:53:41 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/08 15:43:29 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/08 16:21:11 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ enum			e_user_error
 	INVALID_TILE,
 	NOT_CLOSED,
 	MIN_TILE,
-	WRONG_EXTENSIONS
+	WRONG_EXTENSIONS,
+	WRONG_ARGUMENTS
 };
 
 # define EXTENSIONS ".ber"
@@ -75,6 +76,5 @@ void			free_map(t_map *map);
 t_mlx			*init_struct_mlx(t_map *map);
 void			free_mlx(t_map *map, t_mlx *mlx);
 void			put_image(t_mlx *mlx, int flag, int i, int j);
-int				init_png_file(t_map *map, t_mlx *mlx);
 
 #endif
