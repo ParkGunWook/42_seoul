@@ -6,14 +6,14 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:11:51 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/08 16:32:17 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/08 16:44:50 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "myloc.h"
 #include "solong.h"
 
-void	free_mlx(t_map *map, t_mlx *mlx)
+void			free_mlx(t_map *map, t_mlx *mlx)
 {
 	free_map(map);
 	my_free((void*)&mlx);
@@ -82,4 +82,3 @@ t_mlx			*init_struct_mlx(t_map *map)
 	mlx_loop(mlx->mlx_ptr);
 	return (mlx);
 }
-
