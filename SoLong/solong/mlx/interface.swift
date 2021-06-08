@@ -179,7 +179,6 @@ public func mlx_put_image_to_window_swift(_ mlxptr:UnsafeRawPointer, _ winptr:Un
 @_cdecl("mlx_put_image_to_window_scale")
 public func mlx_put_image_to_window_scale_swift(_ mlxptr:UnsafeRawPointer, _ winptr:UnsafeRawPointer, _ imgptr:UnsafeRawPointer, _ sx:Int32, _ sy:Int32, _ sw:Int32, _ sh:Int32, _ dx:Int32, _ dy:Int32, _ dw:Int32, _ dh:Int32, _ color:UInt32) -> Int32
 {
-	print("hello image putter");
 	let win:MlxWin = _mlx_bridge(ptr:winptr)
 	let img:MlxImg = _mlx_bridge(ptr:imgptr)
 	win.putImageScale(image:img, sx:sx, sy:sy, sw:sw, sh:sh, dx:dx, dy:dy, dw:dw, dh:dh, c:color)

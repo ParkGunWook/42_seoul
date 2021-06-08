@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 21:53:41 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/08 11:28:20 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/08 15:43:29 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 # include "libft.h"
 # include "mlx.h"
 
+enum			e_pngfile
+{
+	ASSET = 0,
+	CHAR
+};
 
 enum			e_tile
 {
@@ -43,7 +48,8 @@ enum			e_user_error
 };
 
 # define EXTENSIONS ".ber"
-# define TILE_SIZE 100
+# define TILE_SIZE 64
+# define BOX_SIZE 48
 
 typedef struct	s_map
 {
@@ -56,9 +62,9 @@ typedef struct	s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	void	*img_ptr[5];
-	int		img_width[5];
-	int		img_height[5];
+	void	*img_ptr[2];
+	int		img_width[2];
+	int		img_height[2];
 }				t_mlx;
 
 t_map			*get_map(char *filename);
@@ -67,5 +73,8 @@ int				get_map_size(t_map *map, int fd, char *filename);
 int				alloc_map(t_map *map, int fd);
 void			free_map(t_map *map);
 t_mlx			*init_struct_mlx(t_map *map);
+void			free_mlx(t_map *map, t_mlx *mlx);
+void			put_image(t_mlx *mlx, int flag, int i, int j);
+int				init_png_file(t_map *map, t_mlx *mlx);
 
 #endif
