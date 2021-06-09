@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:11:51 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/08 16:44:50 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/09 17:04:49 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static int		init_png_file(t_map *map, t_mlx *mlx)
 		free_mlx(map, mlx);
 		return (-1);
 	}
+	printf("init png done\n");
 	return (0);
 }
 
@@ -77,8 +78,10 @@ t_mlx			*init_struct_mlx(t_map *map)
 		{
 			printf("%d %d %d\n", i, j, map->map[i][j]);
 			put_image(mlx, map->map[i][j], j, i);
+			printf("done %d %d %d\n", i, j, map->map[i][j]);
 		}
 	}
+	mlx_add_hooks(map, mlx);
 	mlx_loop(mlx->mlx_ptr);
 	return (mlx);
 }

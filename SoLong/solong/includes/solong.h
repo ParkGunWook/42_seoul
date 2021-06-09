@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 21:53:41 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/08 16:21:11 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/09 17:08:25 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,21 @@ enum			e_user_error
 # define TILE_SIZE 64
 # define BOX_SIZE 48
 
+#define	UP          126
+#define	DOWN        125
+#define	LEFT        123
+#define	RIGHT       124
+#define ESC         53
+#define KeyPress    2
+#define KeyRelease  3
+
 typedef struct	s_map
 {
 	int		**map;
 	int		width;
 	int		height;
+	int		player_i;
+	int		player_j;
 }				t_map;
 
 typedef struct	s_mlx
@@ -68,6 +78,12 @@ typedef struct	s_mlx
 	int		img_height[2];
 }				t_mlx;
 
+typedef struct	s_params
+{
+	struct s_map *map;
+	struct s_mlx *mlx;
+}				t_params;
+
 t_map			*get_map(char *filename);
 int				assign_map(int fd, t_map *map);
 int				get_map_size(t_map *map, int fd, char *filename);
@@ -76,5 +92,11 @@ void			free_map(t_map *map);
 t_mlx			*init_struct_mlx(t_map *map);
 void			free_mlx(t_map *map, t_mlx *mlx);
 void			put_image(t_mlx *mlx, int flag, int i, int j);
+int				mlx_add_hooks(t_map *map, t_mlx *mlx);
+int				move_up(int keycode, t_params *params);
+int				move_down(int keycode, t_params *params);
+int				move_right(int keycode, t_params *params);
+int				move_left(int keycode, t_params *params);
+int				close_win(int keycode, t_params *params);
 
 #endif
