@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 14:10:01 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/08 11:27:49 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/10 17:23:06 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "myloc.h"
 #include <stdio.h>
 
-static int	check_map_tile(char buffer)
+static int	check_map_tile(t_map *map, char buffer, int i, int j)
 {
 	if (buffer == '0')
 		return (EMPTY);
@@ -25,7 +25,11 @@ static int	check_map_tile(char buffer)
 	else if (buffer == 'E')
 		return (ESCAPE);
 	else if (buffer == 'P')
+	{
+		map->player_i = i;
+		map->player_j = j;
 		return (PLAYER);
+	}
 	else
 		return (-1);
 }
@@ -43,7 +47,7 @@ int			assign_map(int fd, t_map *map)
 		while (j < map->width)
 		{
 			read(fd, &buffer, 1);
-			map->map[i][j] = check_map_tile(buffer);
+			map->map[i][j] = check_map_tile(map, buffer, i, j);
 			if (map->map[i][j] == -1)
 			{
 				close(fd);

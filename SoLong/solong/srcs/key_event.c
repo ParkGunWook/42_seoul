@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 14:36:47 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/09 17:13:23 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/10 17:24:38 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int		can_move(t_map *map)
 
 int				move_up(int keycode, t_params *params)
 {
-	printf("key code : %d", keycode);
+	printf("key code : %d\n", keycode);
+	printf("user at : %d %d\n", params->map->player_i, params->map->player_j);
 	params->map->player_i = params->map->player_i - 1;
 	if (!can_move(params->map))
 	{
@@ -40,7 +41,8 @@ int				move_up(int keycode, t_params *params)
 
 int				move_down(int keycode, t_params *params)
 {
-	printf("key code : %d", keycode);
+	printf("key code : %d\n", keycode);
+	printf("user at : %d %d\n", params->map->player_i, params->map->player_j);
 	params->map->player_i = params->map->player_i + 1;
 	if (!can_move(params->map))
 	{
@@ -55,7 +57,8 @@ int				move_down(int keycode, t_params *params)
 
 int				move_right(int keycode, t_params *params)
 {
-	printf("key code : %d", keycode);
+	printf("key code : %d\n", keycode);
+	printf("user at : %d %d\n", params->map->player_i, params->map->player_j);
 	params->map->player_j = params->map->player_j - 1;
 	if (!can_move(params->map))
 	{
@@ -70,7 +73,8 @@ int				move_right(int keycode, t_params *params)
 
 int				move_left(int keycode, t_params *params)
 {
-	printf("key code : %d", keycode);
+	printf("key code : %d\n", keycode);
+	printf("user at : %d %d\n", params->map->player_i, params->map->player_j);
 	params->map->player_j = params->map->player_j + 1;
 	if (!can_move(params->map))
 	{
