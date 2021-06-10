@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 21:53:41 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/10 21:13:38 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/10 21:25:41 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct	s_map
 	int		height;
 	int		player_i;
 	int		player_j;
+	int		player_move;
 	int		collection[2];
 }				t_map;
 

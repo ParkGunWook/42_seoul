@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 16:24:20 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/10 21:10:18 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/10 21:34:16 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,5 @@ int		main(int argc, char *argv[])
 	mlx = init_mlx_struct(map);
 	if (!mlx)
 		return (0);
-	mlx_add_hooks(map, mlx);
-	mlx_loop(mlx->mlx_ptr);
 	return (0);
 }

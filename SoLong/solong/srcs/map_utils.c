@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 14:10:01 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/10 21:15:53 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/10 21:39:20 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ void		update_map_info(t_map *map)
 	int		i;
 	int		j;
 
+	map->player_move = 0;
+	map->collection[TOTAL] = 0;
+	map->collection[GET] = 0;
 	i = 0;
 	while (i < map->height)
 	{

@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 14:36:47 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/10 21:13:24 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/10 21:50:41 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		update_map(t_params *params, int prev_i, int prev_j)
 		== COLLECT)
 	{
 		params->map->collection[GET]++;
-		params->map->map[prev_i][prev_j] = EMPTY;
+		params->map->map[params->map->player_i][params->map->player_j] = EMPTY;
 	}
 	put_image(params->mlx, PLAYER,
 		params->map->player_j, params->map->player_i);
@@ -63,6 +63,9 @@ int				move_event(t_params *params, int dir)
 		params->map->player_j = params->map->player_j + change;
 	if (!can_move(params->map, prev_i, prev_j))
 		return (0);
+	params->map->player_move++;
 	update_map(params, prev_i, prev_j);
+	ft_putnbr_fd(params->map->player_move, 1);
+	write(1, "\n", 1);
 	return (1);
 }

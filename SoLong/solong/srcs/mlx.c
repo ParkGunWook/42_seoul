@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:11:51 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/10 21:17:01 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/10 21:40:33 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ void			free_mlx(t_map *map, t_mlx *mlx)
 
 static	int		init_mlx_win_ptr(t_map *map, t_mlx *mlx)
 {
+	int		sizex;
+	int		sizey;
+
+	mlx_get_screen_size(mlx->mlx_ptr, &sizex, &sizey);
+	if (sizex < map->width * TILE_SIZE || sizey < map->height * TILE_SIZE)
+		return (-1);
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
 		(map->width) * TILE_SIZE, (map->height) * TILE_SIZE, "So_long");
 	if (!mlx->win_ptr)
@@ -37,6 +43,7 @@ static int		init_png_file(t_map *map, t_mlx *mlx)
 		"./img/Assets.png", &mlx->img_width[ASSET], &mlx->img_height[ASSET]);
 	if (!mlx->img_ptr[ASSET])
 	{
+		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 		free_mlx(map, mlx);
 		return (-1);
 	}
@@ -44,6 +51,7 @@ static int		init_png_file(t_map *map, t_mlx *mlx)
 		"./img/Char.png", &mlx->img_width[CHAR], &mlx->img_height[CHAR]);
 	if (!mlx->img_ptr[ASSET])
 	{
+		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 		free_mlx(map, mlx);
 		return (-1);
 	}
@@ -67,14 +75,10 @@ t_mlx			*init_mlx_struct(t_map *map)
 		return (0);
 	}
 	if (init_mlx_win_ptr(map, mlx) == -1)
-	{
-		free_mlx(map, mlx);
 		return (0);
-	}
 	if (init_png_file(map, mlx) == -1)
-	{
-		free_mlx(map, mlx);
 		return (0);
-	}
+	mlx_add_hooks(map, mlx);
+	mlx_loop(mlx->mlx_ptr);
 	return (mlx);
 }
