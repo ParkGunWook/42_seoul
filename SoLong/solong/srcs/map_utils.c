@@ -6,39 +6,72 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 14:10:01 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/10 17:23:06 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/10 21:15:53 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 #include "myloc.h"
-#include <stdio.h>
 
-static int	check_map_tile(t_map *map, char buffer, int i, int j)
-{
-	if (buffer == '0')
-		return (EMPTY);
-	else if (buffer == '1')
-		return (WALL);
-	else if (buffer == 'C')
-		return (COLLECT);
-	else if (buffer == 'E')
-		return (ESCAPE);
-	else if (buffer == 'P')
-	{
-		map->player_i = i;
-		map->player_j = j;
-		return (PLAYER);
-	}
-	else
-		return (-1);
-}
-
-int			assign_map(int fd, t_map *map)
+int			min_tile_check(t_map *map, int fd)
 {
 	int		i;
 	int		j;
-	char	buffer;
+	int		tiles[5];
+
+	ft_bzero(tiles, sizeof(int) * 5);
+	i = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			tiles[map->map[i][j]]++;
+			j++;
+		}
+		i++;
+	}
+	if (tiles[PLAYER] != 1 || tiles[COLLECT] <= 0 || tiles[ESCAPE] <= 0)
+	{
+		errno = MIN_TILE;
+		close(fd);
+		free_map(map);
+		return (-1);
+	}
+	return (1);
+}
+
+int			map_close_check(t_map *map, int fd)
+{
+	int		i;
+
+	i = 0;
+	while (i < map->width)
+	{
+		if (map->map[0][i] != WALL || map->map[map->height - 1][i] != WALL)
+			errno = NOT_CLOSED;
+		i++;
+	}
+	i = 0;
+	while (i < map->height)
+	{
+		if (map->map[i][0] != WALL || map->map[i][map->width - 1] != WALL)
+			errno = NOT_CLOSED;
+		i++;
+	}
+	if (errno == NOT_CLOSED)
+	{
+		close(fd);
+		free_map(map);
+		return (-1);
+	}
+	return (1);
+}
+
+void		update_map_info(t_map *map)
+{
+	int		i;
+	int		j;
 
 	i = 0;
 	while (i < map->height)
@@ -46,76 +79,18 @@ int			assign_map(int fd, t_map *map)
 		j = 0;
 		while (j < map->width)
 		{
-			read(fd, &buffer, 1);
-			map->map[i][j] = check_map_tile(map, buffer, i, j);
-			if (map->map[i][j] == -1)
+			if (map->map[i][j] == PLAYER)
 			{
-				close(fd);
-				errno = INVALID_TILE;
-				free_map(map);
-				return (-1);
+				map->player_i = i;
+				map->player_j = j;
+				map->map[i][j] = PLAYER;
 			}
+			if (map->map[i][j] == COLLECT)
+				map->collection[TOTAL]++;
 			j++;
 		}
-		read(fd, &buffer, 1);
 		i++;
 	}
-	return (1);
-}
-
-int			get_map_size(t_map *map, int fd, char *filename)
-{
-	char	buffer;
-	int		i;
-
-	i = 0;
-	while (read(fd, &buffer, 1))
-	{
-		if (buffer == '\n')
-		{
-			if (map->width == 0)
-				map->width = i;
-			if (map->width != i)
-			{
-				close(fd);
-				my_free((void*)(&map));
-				errno = NOT_RECT;
-				return (-1);
-			}
-			i = -1;
-			map->height++;
-		}
-		i++;
-	}
-	close(fd);
-	fd = open(filename, O_RDWR);
-	return (fd);
-}
-
-int			alloc_map(t_map *map, int fd)
-{
-	int		i;
-
-	if (my_aloc((void*)(&map->map), sizeof(int*) * map->height) == 0)
-	{
-		my_free((void*)(&map));
-		return (-1);
-	}
-	i = 0;
-	while (i < map->height)
-	{
-		if (my_aloc((void*)(&map->map[i]), sizeof(int) * map->width) == 0)
-		{
-			close(fd);
-			while (--i)
-				my_free((void*)(&map->map[i]));
-			my_free((void*)(&map->map));
-			my_free((void*)(&map));
-			return (-1);
-		}
-		i++;
-	}
-	return (1);
 }
 
 void		free_map(t_map *map)

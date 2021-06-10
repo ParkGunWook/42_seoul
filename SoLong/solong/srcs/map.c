@@ -6,70 +6,114 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 22:01:18 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/10 17:21:50 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/10 21:12:14 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 #include "myloc.h"
-#include <stdio.h>
 
-static	int	min_tile_check(t_map *map, int fd)
+static int		check_map_tile(char buffer)
+{
+	if (buffer == '0')
+		return (EMPTY);
+	else if (buffer == '1')
+		return (WALL);
+	else if (buffer == 'C')
+		return (COLLECT);
+	else if (buffer == 'E')
+		return (ESCAPE);
+	else if (buffer == 'P')
+		return (PLAYER);
+	else
+		return (-1);
+}
+
+static int		assign_map(int fd, t_map *map)
 {
 	int		i;
 	int		j;
-	int		tiles[5];
+	char	buffer;
 
-	ft_bzero(tiles, sizeof(int) * 5);
 	i = 0;
 	while (i < map->height)
 	{
 		j = 0;
 		while (j < map->width)
 		{
-			tiles[map->map[i][j]]++;
+			read(fd, &buffer, 1);
+			map->map[i][j] = check_map_tile(buffer);
+			if (map->map[i][j] == -1)
+			{
+				close(fd);
+				errno = INVALID_TILE;
+				free_map(map);
+				return (-1);
+			}
 			j++;
 		}
+		read(fd, &buffer, 1);
 		i++;
-	}
-	if (tiles[PLAYER] != 1 || tiles[COLLECT] <= 0 || tiles[ESCAPE] <= 0)
-	{
-		errno = MIN_TILE;
-		close(fd);
-		free_map(map);
-		return (-1);
 	}
 	return (1);
 }
 
-static	int	map_close_check(t_map *map, int fd)
+static int		get_map_size(t_map *map, int fd, char *filename)
 {
+	char	buffer;
 	int		i;
 
 	i = 0;
-	while (i < map->width)
+	while (read(fd, &buffer, 1))
 	{
-		if (map->map[0][i] != WALL || map->map[map->height - 1][i] != WALL)
-			errno = NOT_CLOSED;
+		if (buffer == '\n')
+		{
+			if (map->width == 0)
+				map->width = i;
+			if (map->width != i)
+			{
+				close(fd);
+				my_free((void*)(&map));
+				errno = NOT_RECT;
+				return (-1);
+			}
+			i = -1;
+			map->height++;
+		}
 		i++;
+	}
+	close(fd);
+	fd = open(filename, O_RDWR);
+	return (fd);
+}
+
+static int		alloc_map(t_map *map, int fd)
+{
+	int		i;
+
+	if (my_aloc((void*)(&map->map), sizeof(int*) * map->height) == 0)
+	{
+		my_free((void*)(&map));
+		return (-1);
 	}
 	i = 0;
 	while (i < map->height)
 	{
-		if (map->map[i][0] != WALL || map->map[i][map->width - 1] != WALL)
-			errno = NOT_CLOSED;
+		if (my_aloc((void*)(&map->map[i]), sizeof(int) * map->width) == 0)
+		{
+			close(fd);
+			while (--i)
+				my_free((void*)(&map->map[i]));
+			my_free((void*)(&map->map));
+			my_free((void*)(&map));
+			return (-1);
+		}
 		i++;
-	}
-	if (errno == NOT_CLOSED)
-	{
-		close(fd);
-		free_map(map);
-		return (-1);
 	}
 	return (1);
 }
 
-t_map		*get_map(char *filename)
+t_map			*get_map(char *filename)
 {
 	t_map	*map;
 	int		i;
@@ -93,6 +137,7 @@ t_map		*get_map(char *filename)
 		return (0);
 	if (map_close_check(map, fd) == -1 || min_tile_check(map, fd) == -1)
 		return (0);
+	update_map_info(map);
 	close(fd);
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 21:53:41 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/10 14:04:37 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/10 21:13:38 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 
 # include "libft.h"
 # include "mlx.h"
+
+# define EXTENSIONS ".ber"
+# define TILE_SIZE 64
+# define BOX_SIZE 48
+
+# define UP 13
+# define DOWN 1
+# define LEFT 0
+# define RIGHT 2
+# define ESC 53
 
 enum			e_pngfile
 {
@@ -48,19 +58,11 @@ enum			e_user_error
 	WRONG_ARGUMENTS
 };
 
-# define EXTENSIONS ".ber"
-# define TILE_SIZE 64
-# define BOX_SIZE 48
-
-# define UP 126
-# define DOWN 125
-# define LEFT 123
-# define RIGHT 124
-# define ESC 53
-# define KeyPress 2
-# define KeyRelease 3
-# define KeyPressMask (1L<<0)
-# define KeyReleaseMask (1L<<1)
+enum			e_collection
+{
+	GET = 0,
+	TOTAL
+};
 
 typedef struct	s_map
 {
@@ -69,6 +71,7 @@ typedef struct	s_map
 	int		height;
 	int		player_i;
 	int		player_j;
+	int		collection[2];
 }				t_map;
 
 typedef struct	s_mlx
@@ -86,19 +89,17 @@ typedef struct	s_params
 	struct s_mlx *mlx;
 }				t_params;
 
+void			ft_perror(int errcase);
 t_map			*get_map(char *filename);
-int				assign_map(int fd, t_map *map);
-int				get_map_size(t_map *map, int fd, char *filename);
-int				alloc_map(t_map *map, int fd);
+int				min_tile_check(t_map *map, int fd);
+int				map_close_check(t_map *map, int fd);
+void			update_map_info(t_map *map);
 void			free_map(t_map *map);
-t_mlx			*init_struct_mlx(t_map *map);
+t_mlx			*init_mlx_struct(t_map *map);
 void			free_mlx(t_map *map, t_mlx *mlx);
 void			put_image(t_mlx *mlx, int flag, int i, int j);
 int				mlx_add_hooks(t_map *map, t_mlx *mlx);
-int				move_up(int keycode, t_params *params);
-int				move_down(int keycode, t_params *params);
-int				move_right(int keycode, t_params *params);
-int				move_left(int keycode, t_params *params);
-int				key_catcher(int keycode, t_params *params);
+int				move_event(t_params *params, int dir);
+int				get_key(int keycode, t_params *params);
 
 #endif

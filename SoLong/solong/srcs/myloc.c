@@ -6,17 +6,15 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 13:37:50 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/07 17:15:18 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/10 21:15:59 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 #include "myloc.h"
-#include <stdio.h>
 
 int		my_aloc(void **ptr, size_t size)
 {
-	printf("malloc\n");
 	*ptr = malloc(size);
 	if (!(*ptr))
 		return (0);
@@ -26,7 +24,6 @@ int		my_aloc(void **ptr, size_t size)
 
 void	my_free(void **ptr)
 {
-	printf("free\n");
 	free(*ptr);
 	g_mlcnt--;
 	*ptr = 0;
