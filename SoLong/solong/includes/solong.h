@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 21:53:41 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/09 17:08:25 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/10 14:04:37 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,15 @@ enum			e_user_error
 # define TILE_SIZE 64
 # define BOX_SIZE 48
 
-#define	UP          126
-#define	DOWN        125
-#define	LEFT        123
-#define	RIGHT       124
-#define ESC         53
-#define KeyPress    2
-#define KeyRelease  3
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+# define ESC 53
+# define KeyPress 2
+# define KeyRelease 3
+# define KeyPressMask (1L<<0)
+# define KeyReleaseMask (1L<<1)
 
 typedef struct	s_map
 {
@@ -97,6 +99,6 @@ int				move_up(int keycode, t_params *params);
 int				move_down(int keycode, t_params *params);
 int				move_right(int keycode, t_params *params);
 int				move_left(int keycode, t_params *params);
-int				close_win(int keycode, t_params *params);
+int				key_catcher(int keycode, t_params *params);
 
 #endif
