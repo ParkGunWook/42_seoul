@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:12:18 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/14 16:36:26 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/14 20:35:17 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_cmds		*init_cmd(char *argv[])
 		ft_perror(errno);
 		return (NULL);
 	}
-	cmds->main_cmd1 = ft_strjoin("/bin/", cmds->cmd1[0]);
-	cmds->main_cmd2 = ft_strjoin("/bin/", cmds->cmd2[0]);
+	cmds->main_cmd1 = ft_strjoin("/usr/bin/", cmds->cmd1[0]);
+	cmds->main_cmd2 = ft_strjoin("/usr/bin/", cmds->cmd2[0]);
 	return (cmds);
 }

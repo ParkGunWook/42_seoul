@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:05:43 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/14 17:59:17 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/14 20:44:44 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		call_child(int *pipes, t_cmds *cmds, char *argv[], char *envp[])
 		ft_perror(errno);
 		return ;
 	}
-	if (execve(cmds->main_cmd2, cmds->cmd2, envp) == -1)
+	if (execve(cmds->main_cmd1, cmds->cmd1, envp) == -1)
 	{
 		ft_perror(errno);
 		return ;
@@ -31,12 +31,12 @@ static void		call_father(int *pipes, t_cmds *cmds, char *argv[], char *envp[])
 {
 	wait(0);
 	dup2(pipes[0], STDIN_FILENO);
-	if (execve(cmds->main_cmd1, cmds->cmd1, envp) == -1)
+	if (redirect_out(pipes, argv[OUTFILE]) == -1)
 	{
 		ft_perror(errno);
 		return ;
 	}
-	if (redirect_out(pipes, argv[OUTFILE]) == -1)
+	if (execve(cmds->main_cmd2, cmds->cmd2, envp) == -1)
 	{
 		ft_perror(errno);
 		return ;
