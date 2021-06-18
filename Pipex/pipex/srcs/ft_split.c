@@ -6,113 +6,99 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 01:02:15 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/14 15:14:31 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/18 21:20:12 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static size_t	skip_delimiter(char const *s, char c)
+int				free_split(char **ret)
 {
-	size_t		idx;
+	int		idx;
 
 	idx = 0;
-	while (*(s + idx))
-	{
-		if (*(s + idx) != c)
-		{
-			break ;
-		}
-		idx++;
-	}
-	return (idx);
-}
-
-static size_t	count_split(char const *s, char c)
-{
-	size_t	split_count;
-	int		cur;
-	int		prev;
-
-	split_count = 1;
-	cur = 0;
-	prev = -1;
-	while (*(s + cur))
-	{
-		if (*(s + cur) == c)
-		{
-			if (prev + 1 == cur && prev != 0 && prev++ && ++cur)
-				continue ;
-			split_count++;
-			prev = cur;
-		}
-		else if (*(s + cur + 1) == 0 && *(s + cur) != c)
-			split_count++;
-		cur++;
-	}
-	return (split_count);
-}
-
-int			free_all(char **ret, size_t idx)
-{
-	while (1)
+	while (ret[idx])
 	{
 		free(ret[idx]);
-		if (idx == 0)
-			break ;
-		idx--;
+		idx++;
 	}
 	free(ret);
 	return (0);
 }
 
-static int		split_str(char const *s, char c, char **ret)
+static void		get_next_point(const char *s, int *s_idx, int *i, int *next_s)
 {
-	size_t	ret_idx;
-	int		cur;
-	int		prev;
+	char c;
 
-	prev = -1;
-	cur = 0;
-	ret_idx = 0;
-	while (*(s + cur))
+	if (s[*i] == '\"' || s[*i] == '\'')
 	{
-		if (*(s + cur) == c)
-		{
-			if (prev + 1 == cur && prev != -1 && prev++ && ++cur)
-				continue;
-			if (!(ret[ret_idx++] = ft_substr(s, prev + 1, cur - prev - 1)))
-				return (free_all(ret, ret_idx));
-			prev = cur;
-		}
-		else if (*(s + cur + 1) == 0 && *(s + cur) != c)
-		{
-			if (!(ret[ret_idx++] = ft_substr(s, prev + 1, cur - prev)))
-				return (free_all(ret, ret_idx));
-		}
-		cur++;
+		if (s[*i] == '\"')
+			c = '\"';
+		else
+			c = '\'';
+		(*s_idx)++;
+		(*i)++;
+		while (s[*i] && s[*i] != c)
+			(*i)++;
+		(*next_s) = (*i);
+		(*next_s)++;
+		while (s[*next_s] && s[*next_s] == ' ')
+			(*next_s)++;
+	}
+	else
+	{
+		while (s[*i] && s[*i] != ' ')
+			(*i)++;
+		(*next_s) = (*i);
+		while (s[*next_s] && s[*next_s] == ' ')
+			(*next_s)++;
+	}
+}
+
+static int		recursplit(const char *s, char ***ret, int s_idx, int split_idx)
+{
+	int		i;
+	int		next_s;
+
+	if (ft_strlen(s) == s_idx)
+	{
+		printf("split_idx :%d\n", split_idx);
+		*ret = malloc(sizeof(char*) * split_idx + 1);
+		if (!(*ret))
+			return (0);
+		ret[split_idx] = 0;
+		return (1);
+	}
+	i = s_idx;
+	next_s = 0;
+	get_next_point(s, &s_idx, &i, &next_s);
+	printf("s_idx : %d i : %d next_s %d\n", s_idx, i, next_s);
+	recursplit(s, ret, next_s, split_idx + 1);
+	printf("s_idx : %d i : %d next_s %d\n", s_idx, i, next_s);
+	(*ret)[split_idx] = ft_substr(s, s_idx, i - s_idx);
+	printf("sub str %s\n", (*ret)[split_idx]);
+	if (!((*ret)[split_idx]))
+	{
+		free_split(*ret);
+		return (0);
 	}
 	return (1);
 }
 
 char			**ft_split(char const *s, char c)
 {
-	size_t		split_count;
-	size_t		idx;
-	char		**ret;
+	int		i;
+	char	**ret;
 
-	if (!s)
-		return (NULL);
-	ret = NULL;
-	idx = skip_delimiter(s, c);
-	split_count = count_split(s + idx, c);
-	if (!(ret = (char**)malloc(sizeof(char*) * split_count)))
-		return (NULL);
-	if (split_str(s + idx, c, ret))
+	i = 0;
+	while (s[i] == c)
+		i++;
+	recursplit(s, &ret, i, 0);
+	i = 0;
+	while (ret[i])
 	{
-		*(ret + split_count - 1) = 0;
-		return (ret);
+		printf("%s\n", ret[i]);
+		i++;
 	}
-	else
-		return (NULL);
+	return (ret);
 }
