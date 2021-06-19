@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:05:43 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/19 18:07:40 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/19 21:37:13 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,17 @@ static void		call_child(int *pipes, t_cmds *cmds, char *argv[])
 		ft_perror(errno);
 		return ;
 	}
-	dup2(STDOUT_FILENO, pipes[1]);
 }
 
 static void		call_father(int *pipes, t_cmds *cmds, char *argv[])
 {
 	wait(0);
-	dup2(pipes[0], STDIN_FILENO);
+	if (dup2(pipes[0], STDIN_FILENO) == -1)
+	{
+		free_cmd(&cmds);
+		ft_perror(errno);
+		return ;
+	}
 	if (redirect_out(pipes, argv[OUTFILE]) == -1)
 	{
 		free_cmd(&cmds);
@@ -45,10 +49,9 @@ static void		call_father(int *pipes, t_cmds *cmds, char *argv[])
 		ft_perror(errno);
 		return ;
 	}
-	free_cmd(&cmds);
 }
 
-static int		init_pipex(int argc, int *pipes)
+static int		init_main(int argc, char *argv[], int *pipes, t_cmds **cmds)
 {
 	if (argc != 5)
 	{
@@ -61,7 +64,31 @@ static int		init_pipex(int argc, int *pipes)
 		ft_perror(errno);
 		return (-1);
 	}
+	(*cmds) = init_cmd(argv);
+	if ((*cmds) == NULL)
+	{
+		ft_perror(errno);
+		return (-1);
+	}
 	return (0);
+}
+
+static void		main2(char *argv[], t_cmds *cmds, int *pipes)
+{
+	pid_t		pid;
+
+	pid = fork();
+	if (pid == -1)
+	{
+		free_cmd(&cmds);
+		ft_perror(errno);
+		return ;
+	}
+	else if (pid == 0)
+		call_father(pipes, cmds, argv);
+	else
+		free_cmd(&cmds);
+	return ;
 }
 
 int				main(int argc, char *argv[])
@@ -70,14 +97,9 @@ int				main(int argc, char *argv[])
 	t_cmds		*cmds;
 	int			pipes[2];
 
-	if (init_pipex(argc, pipes) == -1)
+	cmds = NULL;
+	if (init_main(argc, argv, pipes, &cmds) == -1)
 		return (0);
-	cmds = init_cmd(argv);
-	if (cmds == NULL)
-	{
-		ft_perror(errno);
-		return (0);
-	}
 	pid = fork();
 	if (pid == -1)
 	{
@@ -88,6 +110,6 @@ int				main(int argc, char *argv[])
 	else if (pid == 0)
 		call_child(pipes, cmds, argv);
 	else
-		call_father(pipes, cmds, argv);
+		main2(argv, cmds, pipes);
 	return (0);
 }

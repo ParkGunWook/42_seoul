@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:12:18 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/19 18:27:03 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/19 21:29:51 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,16 @@ static int		init_cmd2(char *argv[], t_cmds *cmds)
 		free_split(cmds->cmd1, -1);
 		free(cmds->exe_path1);
 		errno = SPLIT_ERROR;
-		ft_perror(errno);
 		return (-1);
 	}
 	cmds->exe_path2 = get_path(cmds->cmd2[0]);
 	if (cmds->exe_path1 == NULL)
 	{
 		free(cmds);
-		free_split(cmds->cmd1 , -1);
+		free_split(cmds->cmd1, -1);
 		free(cmds->exe_path1);
 		free_split(cmds->cmd2, -1);
 		errno = NOT_VALID_EXE;
-		ft_perror(NOT_VALID_EXE);
 		return (-1);
 	}
 	return (0);
@@ -90,7 +88,6 @@ t_cmds			*init_cmd(char *argv[])
 	{
 		free(cmds);
 		errno = SPLIT_ERROR;
-		ft_perror(errno);
 		return (NULL);
 	}
 	cmds->exe_path1 = get_path(cmds->cmd1[0]);
@@ -99,7 +96,6 @@ t_cmds			*init_cmd(char *argv[])
 		free(cmds);
 		free_split(cmds->cmd1, -1);
 		errno = NOT_VALID_EXE;
-		ft_perror(NOT_VALID_EXE);
 		return (NULL);
 	}
 	if (init_cmd2(argv, cmds) == -1)

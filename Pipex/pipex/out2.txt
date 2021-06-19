@@ -1,8 +1,0 @@
-total 128
--rw-r--r--   1 gpark  2021_seoul   1423 Jun 14 15:55 Makefile
--rw-r--r--   1 gpark  2021_seoul     18 Jun 14 20:43 in.txt
-drwxr-xr-x   3 gpark  2021_seoul    102 Jun 13 18:47 includes
--rw-r--r--   1 gpark  2021_seoul    435 Jun 15 19:46 out1.txt
--rw-r--r--   1 gpark  2021_seoul      0 Jun 15 19:46 out2.txt
--rwxr-xr-x   1 gpark  2021_seoul  50776 Jun 15 19:43 pipex
-drwxr-xr-x  20 gpark  2021_seoul    680 Jun 15 19:40 srcs
