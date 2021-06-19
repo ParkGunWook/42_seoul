@@ -6,17 +6,16 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 01:02:15 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/19 18:09:47 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/19 18:25:07 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int				free_split(char **ret)
+int				free_split(char **ret, int idx)
 {
-	int		idx;
-
-	idx = 0;
+	if (idx == -1)
+		idx = 0;
 	while (ret[idx])
 	{
 		free(ret[idx]);
@@ -75,7 +74,7 @@ static int		recursplit(const char *s, char ***ret, int s_idx, int split_idx)
 	(*ret)[split_idx] = ft_substr(s, s_idx, i - s_idx);
 	if (!((*ret)[split_idx]))
 	{
-		free_split(*ret);
+		free_split(*ret, split_idx + 1);
 		return (0);
 	}
 	return (1);

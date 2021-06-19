@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:12:18 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/19 18:06:41 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/19 18:27:03 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,19 @@ static int		init_cmd2(char *argv[], t_cmds *cmds)
 	if (cmds->cmd2 == NULL)
 	{
 		free(cmds);
-		free_split(cmds->cmd1);
+		free_split(cmds->cmd1, -1);
 		free(cmds->exe_path1);
 		errno = SPLIT_ERROR;
 		ft_perror(errno);
 		return (-1);
 	}
-	int i;
-	i = 0;
-	while (cmds->cmd2[i])
-	{
-		printf("%s\n", cmds->cmd2[i]);
-		i++;
-	}
 	cmds->exe_path2 = get_path(cmds->cmd2[0]);
 	if (cmds->exe_path1 == NULL)
 	{
 		free(cmds);
-		free_split(cmds->cmd1);
+		free_split(cmds->cmd1 , -1);
 		free(cmds->exe_path1);
-		free_split(cmds->cmd2);
+		free_split(cmds->cmd2, -1);
 		errno = NOT_VALID_EXE;
 		ft_perror(NOT_VALID_EXE);
 		return (-1);
@@ -92,16 +85,7 @@ t_cmds			*init_cmd(char *argv[])
 	cmds = (t_cmds*)malloc(sizeof(t_cmds));
 	if (cmds == NULL)
 		return (NULL);
-	printf("Split sat\n");
 	cmds->cmd1 = ft_split(argv[CMD1], ' ');
-	printf("Split done\n");
-	int i;
-	i = 0;
-	while(cmds->cmd1[i])
-	{
-		printf("%d : %s\n", i, cmds->cmd1[i]);
-		i++;
-	}
 	if (cmds->cmd1 == NULL)
 	{
 		free(cmds);
@@ -113,7 +97,7 @@ t_cmds			*init_cmd(char *argv[])
 	if (cmds->exe_path1 == NULL)
 	{
 		free(cmds);
-		free_split(cmds->cmd1);
+		free_split(cmds->cmd1, -1);
 		errno = NOT_VALID_EXE;
 		ft_perror(NOT_VALID_EXE);
 		return (NULL);
@@ -125,9 +109,9 @@ t_cmds			*init_cmd(char *argv[])
 
 void			free_cmd(t_cmds **cmds)
 {
-	free_split((*cmds)->cmd1);
+	free_split((*cmds)->cmd1, -1);
 	free((*cmds)->exe_path1);
-	free_split((*cmds)->cmd2);
+	free_split((*cmds)->cmd2, -1);
 	free((*cmds)->exe_path2);
 	free(*cmds);
 	*cmds = 0;
