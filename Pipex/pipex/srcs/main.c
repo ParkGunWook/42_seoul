@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:05:43 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/19 21:37:13 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/19 21:41:54 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void		call_child(int *pipes, t_cmds *cmds, char *argv[])
 	{
 		free_cmd(&cmds);
 		ft_perror(errno);
-		return ;
+		exit(0);
 	}
 	if (execve(cmds->exe_path1, cmds->cmd1, NULL) == -1)
 	{
 		free_cmd(&cmds);
 		ft_perror(errno);
-		return ;
+		exit(0);
 	}
 }
 
@@ -35,19 +35,19 @@ static void		call_father(int *pipes, t_cmds *cmds, char *argv[])
 	{
 		free_cmd(&cmds);
 		ft_perror(errno);
-		return ;
+		exit(0);
 	}
 	if (redirect_out(pipes, argv[OUTFILE]) == -1)
 	{
 		free_cmd(&cmds);
 		ft_perror(errno);
-		return ;
+		exit(0);
 	}
 	if (execve(cmds->exe_path2, cmds->cmd2, NULL) == -1)
 	{
 		free_cmd(&cmds);
 		ft_perror(errno);
-		return ;
+		exit(0);
 	}
 }
 
@@ -87,7 +87,10 @@ static void		main2(char *argv[], t_cmds *cmds, int *pipes)
 	else if (pid == 0)
 		call_father(pipes, cmds, argv);
 	else
+	{
+		wait(0);
 		free_cmd(&cmds);
+	}
 	return ;
 }
 
