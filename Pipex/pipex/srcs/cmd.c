@@ -6,7 +6,7 @@
 /*   By: gpark <gpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:12:18 by gpark             #+#    #+#             */
-/*   Updated: 2021/06/18 21:04:01 by gpark            ###   ########.fr       */
+/*   Updated: 2021/06/19 18:06:41 by gpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,9 @@ t_cmds			*init_cmd(char *argv[])
 	cmds = (t_cmds*)malloc(sizeof(t_cmds));
 	if (cmds == NULL)
 		return (NULL);
+	printf("Split sat\n");
 	cmds->cmd1 = ft_split(argv[CMD1], ' ');
+	printf("Split done\n");
 	int i;
 	i = 0;
 	while(cmds->cmd1[i])
