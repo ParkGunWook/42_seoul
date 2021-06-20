@@ -19,8 +19,8 @@ comp() {
 	fi
 }
 
-echo -n "hello\nhello world\nhell\n" > test1
-echo -n "hello\nhello world\nhell\n" > user1
+echo -n "hello\nhello world\nhell\na1a1a1\na1\na2\na3a4\n\a1\n" > test1
+echo -n "hello\nhello world\nhell\na1a1a1\na1\na2\na3a4\n\a1\n" > user1
 echo -n "mrdocmrdoc" > tcase1
 echo -n "mrdocmrdoc" > ucase1
 
@@ -93,6 +93,13 @@ printf "$PURPLE$S2$RESET\n"
 ../pipex/pipex ucase1 "cat" "tr \"mrdoc\" \"01234\"" user7 2> user7
 comp test7 user7
 rm -rf test7 user7
+
+printf "$YELLOW$S1$RESET\n"
+printf "$PURPLE""< test1 grep a1 | wc -w > outfile$RESET\n"
+printf "$PURPLE$S2$RESET\n"
+< test1 grep a1 | wc -w > test8 2> test8
+../pipex/pipex user1 "grep a1" "wc -w" user8 2> user8
+comp test8 user8
 
 rm -rf test1 user1
 rm -rf tcase1 ucase1
