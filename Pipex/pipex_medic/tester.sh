@@ -101,6 +101,13 @@ printf "$PURPLE$S2$RESET\n"
 ../pipex/pipex user1 "grep a1" "wc -w" user8 2> user8
 comp test8 user8
 
+printf "$YELLOW$S1$RESET\n"
+printf "$PURPLE""< test1 env | cat -e > outfile$RESET\n"
+printf "$PURPLE$S2$RESET\n"
+< test1 env | cat -e > test9 2> test9
+../pipex/pipex user1 "env" "cat -e" user9 2> user9
+comp test9 user9
+
 rm -rf test1 user1
 rm -rf tcase1 ucase1
 
