@@ -64,7 +64,6 @@ touch txt~~
 < test1 find . -type f \( -name "#*#" -o -name "*~" -o -name "#" \) -exec rm -v {} \; | cat -e > test4 2> test4
 touch txt~~
 ../pipex/pipex user1 "find . -type f ( -name \"#*#\" -o -name \"*~\" -o -name \"#\" ) -exec rm -v {} ;" "cat -e" user4 2> user4
-../pipex/pipex user1 "find . -type f ( -name \"#*#\" -o -name \"*~\" -o -name \"#\" ) -exec rm -v {} ;" "cat -e" user4 2> user4
 comp test4 user4
 rm -rf test4 user4
 
