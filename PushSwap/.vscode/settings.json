@@ -1,0 +1,14 @@
+{
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	"editor.renderWhitespace": "all",
+	"files.trimTrailingWhitespace": true,
+	"files.insertFinalNewline": true,
+	"codam-norminette-3.command": "norminette",
+	"codam-norminette-3.fileregex": "\\.[ch]$",
+	"codam-norminette-3.ignoreErrors": [
+		// "WRONG_SCOPE_COMMENT",
+		// "LINE_TOO_LONG"
+	],
+	"C_Cpp.errorSquiggles": "Disabled"
+}
