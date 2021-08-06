@@ -7,17 +7,28 @@
 
 typedef struct		s_list
 {
-	int 			content;
-	struct s_list	*next;
-	struct s_list	*prev;
+	struct s_node	*head;
+	struct s_node	*tail;
 }					t_list;
 
-t_list 		*initList(int value);
-void		addBack(t_list *head, t_list **back, t_list *tList);
-void 		removeBack(t_list **head, t_list **back);
-void		traverseAll(t_list *front, t_list *back);
-t_list		*popBack(t_list **head, t_list **back);
+typedef struct		s_node
+{
+	int 			content;
+	struct s_node	*next;
+	struct s_node	*prev;
+}					t_node;
+
+
+typedef struct		s_stack
+{
+	struct s_list	*list;
+	size_t			size;
+}					t_stack;
+
+t_list				*initList();
+int					addBack(t_list *tList, int value);
+t_node				*popBack(t_list *list);
+void				traverseAll(t_list *list);
+void				clearList(t_list **list);
 
 # endif
-
-

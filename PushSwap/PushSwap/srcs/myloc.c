@@ -12,6 +12,7 @@ int 		myAloc(void **ptr, size_t size)
 
 void 		myFree(void **ptr)
 {
+	printf("free %d\n", ((t_node *)(*ptr))->content);
 	free(*ptr);
 	//g_mlcnt--;
 	*ptr = 0;

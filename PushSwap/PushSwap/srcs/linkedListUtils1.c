@@ -1,70 +1,86 @@
 #include "utils.h"
 #include "myloc.h"
 
-t_list 		*initList(int value)
+t_list 		*initList()
 {
 	t_list	*tList;
 
-	myAloc((void *)&tList, sizeof(tList));
+	printf("startInit\n");
+	tList = NULL;
+	myAloc((void *)&tList, sizeof(t_list));
 	if (tList == NULL)
-		return (NULL);
-	tList->content = value;
-	tList->next = NULL;
-	tList->prev = NULL;
+		return NULL;
+	tList->head = NULL;
+	tList->tail = NULL;
+	printf("%p : endInit\n", tList);
 	return (tList);
 }
 
-void		addBack(t_list *head, t_list **back, t_list *tList)
+int		addBack(t_list *tList, int value)
 {
-	if (head == *back)
+	t_node	*curNode;
+
+	curNode = NULL;
+	myAloc((void *)&curNode, sizeof(t_node));
+	if (curNode == NULL)
+		return (1);
+	curNode->content = value;
+	if (tList->head == NULL)
 	{
-		head->next = tList;
-		head->prev = tList;
-		tList->prev = head;
-		tList->next = head;
-		(*back) = tList;
-		return ;
+		tList->head = curNode;
+		tList->tail = curNode;
 	}
-	head = (*back)->next;
-	tList->next = head;
-	tList->prev = (*back);
-	(*back)->next = tList;
-	head->prev = tList;
-	(*back) = tList;
+	else
+	{
+		tList->tail->next = curNode;
+		tList->head->prev = curNode;
+		curNode->prev = tList->tail;
+		curNode->next = tList->head;
+		tList->tail = curNode;
+	}
+	return (1);
 }
 
-void 		removeBack(t_list **head, t_list **back)
+t_node		*popBack(t_list *list)
 {
-	t_list	*temp;
+	t_node	*node;
 
-	if ((*head) == (*back))
+	if (list->head == list->tail)
 	{
-		printf("One size case\n");
-		myFree((void *)head);
-		(*head) = NULL;
-		(*back) = NULL;
-		return ;
+		if (list->head == NULL)
+			return NULL;
+		list->head = NULL;
+		list->tail = NULL;
+		return (list->head);
 	}
-	temp = (*back);
-	(*back)->prev->next = (*head);
-	(*back)->next->prev = temp->prev;
-	(*back) = temp->prev;
-	myFree((void *)(&temp));
+	node = (list->tail);
+	list->tail->prev->next = list->head;
+	list->tail->next->prev = list->tail->prev;
+	list->tail = list->tail->prev;
+	return (node);
 }
 
-t_list		*popBack(t_list **head, t_list **back)
+void		clearList(t_list **list)
 {
-	t_list	*temp;
+	t_node		**temp;
+	t_node		**toFree;
 
-	if ((*head) == (*back))
+	int cnt = 0;
+	toFree = &((*list)->head);
+	while ((*toFree) != NULL)
 	{
-		(*head) = NULL;
-		(*back) = NULL;
-		return (*back);
+		printf("ToFree data : %d %p\n", (*toFree)->content, *toFree);
+		temp = &((*toFree)->next);
+		printf("Next data : %d %p\n", (*temp)->content, *temp);
+		myFree((void *)toFree);
+		*toFree = *temp;
+		if (cnt == 0){
+			printf("%p\n", (*list)->head);
+			printf("%p\n", *toFree);
+		}
+		if (cnt == 10)
+			break;
+		cnt++;
 	}
-	temp = (*back);
-	(*back)->prev->next = temp->next;
-	(*back)->next->prev = temp->prev;
-	(*back) = temp->prev;
-	return (temp);
+	myFree((void *)list);
 }
