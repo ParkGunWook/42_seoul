@@ -19,6 +19,6 @@ void		traverseAll(t_list *list)
 		if (cnt == 10)
 			break;
 	}
-	printf("%d : %d\n",cnt+1, cur->content);
+	printf("last %d : %d\n",cnt+1, cur->content);
 	return ;
 }

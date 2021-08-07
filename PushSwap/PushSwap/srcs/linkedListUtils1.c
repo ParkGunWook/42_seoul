@@ -1,7 +1,7 @@
 #include "utils.h"
 #include "myloc.h"
 
-t_list 		*initList()
+t_list 			*initList()
 {
 	t_list	*tList;
 
@@ -16,7 +16,7 @@ t_list 		*initList()
 	return (tList);
 }
 
-int		addBack(t_list *tList, int value)
+int				addBack(t_list *tList, int value)
 {
 	t_node	*curNode;
 
@@ -41,7 +41,7 @@ int		addBack(t_list *tList, int value)
 	return (1);
 }
 
-t_node		*popBack(t_list *list)
+t_node			*popBack(t_list *list)
 {
 	t_node	*node;
 
@@ -49,9 +49,13 @@ t_node		*popBack(t_list *list)
 	{
 		if (list->head == NULL)
 			return NULL;
-		list->head = NULL;
+		myAloc((void **)&node, sizeof(t_node));
+		if (node == NULL)
+			return NULL;
+		node->content = list->head->content;
+		myFree((void **)&(list->head));
 		list->tail = NULL;
-		return (list->head);
+		return (node);
 	}
 	node = (list->tail);
 	list->tail->prev->next = list->head;
@@ -60,27 +64,26 @@ t_node		*popBack(t_list *list)
 	return (node);
 }
 
-void		clearList(t_list **list)
+static	void	clearNodes(t_list *list, t_node **curNode)
 {
-	t_node		**temp;
-	t_node		**toFree;
-
-	int cnt = 0;
-	toFree = &((*list)->head);
-	while ((*toFree) != NULL)
+	if (*curNode == list->tail)
 	{
-		printf("ToFree data : %d %p\n", (*toFree)->content, *toFree);
-		temp = &((*toFree)->next);
-		printf("Next data : %d %p\n", (*temp)->content, *temp);
-		myFree((void *)toFree);
-		*toFree = *temp;
-		if (cnt == 0){
-			printf("%p\n", (*list)->head);
-			printf("%p\n", *toFree);
-		}
-		if (cnt == 10)
-			break;
-		cnt++;
+		myFree((void **)curNode);
+		return ;
 	}
-	myFree((void *)list);
+	else
+	{
+		clearNodes(list, &((*curNode)->next));
+		myFree((void **)curNode);
+	}
+}
+
+void			clearList(t_list **list)
+{
+    printf("list on %p and points to %p\n", &list, list);
+	printf("list head on %p and points to %p\n", &((*list)->head), ((*list)->head));
+	if ((*list)->head != NULL)
+		clearNodes(*list, &(*list)->head);
+	printf("list head on %p and points to %p\n", &((*list)->head), ((*list)->head));
+	myFree((void **)list);
 }
