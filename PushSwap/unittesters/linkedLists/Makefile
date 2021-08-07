@@ -3,15 +3,14 @@ CFLAGS = -Wall -Werror -Wextra
 
 NAME = push_swap
 
-SRCS_DIR = ./srcs
-SRCS_NAME = main.c myloc.c \
-			linkedListUtils1.c linkedListUtils2.c \
-			stackUtils1.c stackUtils2.c stackUtils3.c
-SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_NAME))
+SRCS_DIR = ../../pushswap/srcs
+SRCS_NAME = myloc.c \
+			linkedListUtils1.c linkedListUtils2.c
+SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_NAME)) linkedListMain.c
 
 OBJS = $(SRCS:.c=.o)
 
-INCLUDES = includes/
+INCLUDES = ../../pushswap/includes/
 
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -I$(INCLUDES) $^ -o $@

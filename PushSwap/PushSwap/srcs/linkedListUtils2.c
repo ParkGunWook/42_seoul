@@ -19,6 +19,23 @@ void		traverseAll(t_list *list)
 		if (cnt == 10)
 			break;
 	}
-	printf("last %d : %d\n",cnt+1, cur->content);
+	printf("%d : %d\n",cnt+1, cur->content);
 	return ;
+}
+
+void		addBackNode(t_list *tList, t_node *curNode)
+{
+	if (tList->head == NULL)
+	{
+		tList->head = curNode;
+		tList->tail = curNode;
+	}
+	else
+	{
+		tList->tail->next = curNode;
+		tList->head->prev = curNode;
+		curNode->prev = tList->tail;
+		curNode->next = tList->head;
+		tList->tail = curNode;
+	}
 }

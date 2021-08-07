@@ -5,14 +5,12 @@ t_list 			*initList()
 {
 	t_list	*tList;
 
-	printf("startInit\n");
 	tList = NULL;
 	myAloc((void *)&tList, sizeof(t_list));
 	if (tList == NULL)
 		return NULL;
 	tList->head = NULL;
 	tList->tail = NULL;
-	printf("%p : endInit\n", tList);
 	return (tList);
 }
 
@@ -48,10 +46,10 @@ t_node			*popBack(t_list *list)
 	if (list->head == list->tail)
 	{
 		if (list->head == NULL)
-			return NULL;
+			return (NULL);
 		myAloc((void **)&node, sizeof(t_node));
 		if (node == NULL)
-			return NULL;
+			return (NULL);
 		node->content = list->head->content;
 		myFree((void **)&(list->head));
 		list->tail = NULL;
@@ -80,10 +78,7 @@ static	void	clearNodes(t_list *list, t_node **curNode)
 
 void			clearList(t_list **list)
 {
-    printf("list on %p and points to %p\n", &list, list);
-	printf("list head on %p and points to %p\n", &((*list)->head), ((*list)->head));
 	if ((*list)->head != NULL)
 		clearNodes(*list, &(*list)->head);
-	printf("list head on %p and points to %p\n", &((*list)->head), ((*list)->head));
 	myFree((void **)list);
 }

@@ -10,5 +10,8 @@
 		// "WRONG_SCOPE_COMMENT",
 		// "LINE_TOO_LONG"
 	],
-	"C_Cpp.errorSquiggles": "Disabled"
+	"C_Cpp.errorSquiggles": "Disabled",
+	"files.associations": {
+		"utils.h": "c"
+	}
 }
