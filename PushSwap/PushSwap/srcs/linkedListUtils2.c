@@ -6,9 +6,11 @@ void		traverseAll(t_list *list)
 	t_node		*cur;
 	int 		cnt;
 
+	printf("start Traversal\n");
+	if (list == NULL)
+		return ;
 	cnt = 0;
 	cur = list->head;
-	printf("start Traversal\n");
 	if (cur == NULL)
 		return ;
 	while (cur != list->tail)
