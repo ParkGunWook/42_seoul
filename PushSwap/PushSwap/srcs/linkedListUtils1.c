@@ -19,7 +19,7 @@ int				addBack(t_list *tList, int value)
 	t_node	*curNode;
 
 	curNode = NULL;
-	myAloc((void *)&curNode, sizeof(t_node));
+	myAloc((void **)&curNode, sizeof(t_node));
 	if (curNode == NULL)
 		return (1);
 	curNode->content = value;

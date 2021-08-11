@@ -15,13 +15,33 @@ void		traverseAll(t_list *list)
 		return ;
 	while (cur != list->tail)
 	{
-		printf("%d : %d\n",cnt+1, cur->content);
+		printf("%d ", cur->content);
 		cur = cur->next;
 		cnt++;
-		if (cnt == 10)
-			break;
 	}
-	printf("%d : %d\n",cnt+1, cur->content);
+	printf("%d\n", cur->content);
+	return ;
+}
+
+void		rtraverseAll(t_list *list)
+{
+	t_node		*cur;
+	int 		cnt;
+
+	printf("start rTraversal\n");
+	if (list == NULL)
+		return ;
+	cnt = 0;
+	cur = list->tail;
+	if (cur == NULL)
+		return ;
+	while (cur != list->head)
+	{
+		printf("%d ", cur->content);
+		cur = cur->prev;
+		cnt++;
+	}
+	printf("%d\n", cur->content);
 	return ;
 }
 

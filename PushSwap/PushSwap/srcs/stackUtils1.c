@@ -30,6 +30,7 @@ int				sa(t_stack *aStack)
 	secondNode = popBack(aStack->list);
 	if (firstNode == NULL || secondNode == NULL)
 		return (0);
+	write(1, "sa\n", 3);
 	addBackNode(aStack->list, firstNode);
 	addBackNode(aStack->list, secondNode);
 	return (1);
@@ -46,6 +47,7 @@ int				sb(t_stack *bStack)
 	secondNode = popBack(bStack->list);
 	if (firstNode == NULL || secondNode == NULL)
 		return (0);
+	write(1, "sb\n", 3);
 	addBackNode(bStack->list, firstNode);
 	addBackNode(bStack->list, secondNode);
 	return (1);
@@ -61,6 +63,7 @@ int				ss(t_stack *aStack, t_stack *bStack)
 	ret = sb(bStack);
 	if (ret == 0)
 		return (ret);
+	write(1, "ss\n", 3);
 	return (ret);
 }
 
