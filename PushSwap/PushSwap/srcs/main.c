@@ -3,10 +3,10 @@
 
 int main(int argc, char **argv) 
 {
-	t_list  *list;
-	t_stack *aStack;
-	t_node  *temp;
-	t_stack *bStack;
+	t_list	*list;
+	t_stack	*aStack;
+	t_node	*temp;
+	t_stack	*bStack;
 
 	if (argc == 0)
 		return (0);
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	{
 		temp = popBack(list);
 		if (temp == NULL)
-			break;
+			break ;
 		addBackNode(aStack->list, temp);
 		aStack->size++;
 	}
