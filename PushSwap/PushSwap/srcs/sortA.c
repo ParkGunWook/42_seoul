@@ -21,7 +21,8 @@ static	void	endARecurse(t_stack *aStack, int size)
 		sa(aStack);
 }
 
-static	void	moveStack(t_stack *aStack, t_stack *bStack, int pivots[2], int counts[4])
+static	void	moveStack(t_stack *aStack, t_stack *bStack,
+				int pivots[2], int counts[4])
 {
 	t_node		*aTop;
 
@@ -56,12 +57,6 @@ void	sortA(t_stack *aStack, t_stack *bStack, int size)
 	int		pivots[2];
 
 	getPivots(pivots, aStack, size);
-	/*printf("Asort with size %d\n", size);
-	traverseAll(aStack->list);
-	traverseAll(bStack->list);
-	printf("\n");
-	printf("pivot %d %d\n", pivots[0], pivots[1]);
-	printf("\n");*/
 	ft_memset(counts, 0, sizeof(int) * 4);
 	if (isStackSorted(aStack, ASC, size))
 		return ;

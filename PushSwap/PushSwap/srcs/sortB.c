@@ -44,7 +44,8 @@ static	void	endBRecurse(t_stack *aStack, t_stack *bStack, int size)
 	}
 }
 
-static	void	moveStack(t_stack *aStack, t_stack *bStack, int pivots[2], int counts[4])
+static	void	moveStack(t_stack *aStack,
+				t_stack *bStack, int pivots[2], int counts[4])
 {
 	t_node		*bTop;
 
@@ -72,11 +73,6 @@ void	sortB(t_stack *aStack, t_stack *bStack, int size)
 	int		pivots[4];
 
 	getPivots(pivots, bStack, size);
-	//printf("Bsort with size : %d\n", size);
-	//traverseAll(aStack->list);
-	//traverseAll(bStack->list);
-	//printf("pivot %d %d\n", pivots[0], pivots[1]);
-	//printf("\n");
 	ft_memset(counts, 0, sizeof(int) * 4);
 	if (isStackSorted(bStack, DESC, size))
 	{

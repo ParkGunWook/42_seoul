@@ -13,7 +13,7 @@ static	void	caseFour(t_stack *aStack)
 	ra(aStack);
 }
 
-void			sortThree(t_stack *aStack)
+void	sortThree(t_stack *aStack)
 {
 	t_node		*aHead;
 
