@@ -15,7 +15,6 @@ static	void	caseOne(t_stack *aStack)
 	ra(aStack);
 	sa(aStack);
 	rra(aStack);
-
 }
 
 static	void	caseTwo(t_stack *aStack)

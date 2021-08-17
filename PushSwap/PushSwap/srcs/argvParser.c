@@ -1,7 +1,7 @@
 #include "myloc.h"
 #include "utils.h"
 
-static int		dupChecker(t_list *list)
+static int	dupChecker(t_list *list)
 {
 	t_node		*iCur;
 	t_node		*jCur;
@@ -21,7 +21,7 @@ static int		dupChecker(t_list *list)
 	return (1);
 }
 
-static int		checkIntegerRange(char *tempStr, t_list *ret)
+static int	checkIntegerRange(char *tempStr, t_list *ret)
 {
 	long long	val;
 
@@ -35,7 +35,7 @@ static int		checkIntegerRange(char *tempStr, t_list *ret)
 	return (0);
 }
 
-static int		parseWithString(t_list *ret, char *s)
+static int	parseWithString(t_list *ret, char *s)
 {
 	int		prev;
 	int		cur;
@@ -50,7 +50,7 @@ static int		parseWithString(t_list *ret, char *s)
 		if (cur == prev)
 		{
 			cur++;
-			continue;
+			continue ;
 		}
 		temp = ft_substr(s, prev, cur - prev);
 		if (temp == NULL)
@@ -61,7 +61,7 @@ static int		parseWithString(t_list *ret, char *s)
 	return (1);
 }
 
-t_list			*parser(char **argv)
+t_list		*parser(char **argv)
 {
 	int			argvCnt;
 	t_list		*ret;
