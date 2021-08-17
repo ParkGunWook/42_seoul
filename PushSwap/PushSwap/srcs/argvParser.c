@@ -61,7 +61,7 @@ static int	parseWithString(t_list *ret, char *s)
 	return (1);
 }
 
-t_list		*parser(char **argv)
+t_list	*parser(char **argv)
 {
 	int			argvCnt;
 	t_list		*ret;
