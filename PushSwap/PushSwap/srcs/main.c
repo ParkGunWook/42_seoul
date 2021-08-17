@@ -1,17 +1,16 @@
 #include "utils.h"
 #include "myloc.h"
 
-int	main(int argc, char **argv)
+static	int	getError(void)
 {
-	t_list	*list;
-	t_stack	*aStack;
-	t_node	*temp;
-	t_stack	*bStack;
+	write(2, "Error\n", 6);
+	return (0);
+}
 
-	if (argc == 0)
-		return (0);
-	list = parser(argv + 1);
-	aStack = initStack('a');
+static void	pushToStack(t_stack *aStack, t_list *list)
+{
+	t_node	*temp;
+
 	while (1)
 	{
 		temp = popBack(list);
@@ -20,8 +19,25 @@ int	main(int argc, char **argv)
 		addBackNode(aStack->list, temp);
 		aStack->size++;
 	}
-	clearList(&list);
+}
+
+int	main(int argc, char **argv)
+{
+	t_list	*list;
+	t_stack	*aStack;
+	t_stack	*bStack;
+
+	if (argc <= 1)
+		return (getError());
+	list = parser(argv + 1);
+	if (list == NULL)
+		return (getError());
+	aStack = initStack('a');
 	bStack = initStack('b');
+	if (aStack == NULL || bStack == NULL)
+		return (getError());
+	pushToStack(aStack, list);
+	clearList(&list);
 	mainSort(aStack, bStack);
 	clearStack(&aStack);
 	clearStack(&bStack);
