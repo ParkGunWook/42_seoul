@@ -20,7 +20,7 @@ typedef struct		s_list
 
 typedef struct		s_node
 {
-	int 			content;
+	int				content;
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
@@ -39,8 +39,7 @@ typedef struct 		s_array
 	size_t			size;
 }					t_array;
 
-
-t_list				*initList();
+t_list				*initList(void);
 int					addBack(t_list *tList, int value);
 t_node				*popBack(t_list *list);
 void				traverseAll(t_list *list);
@@ -80,8 +79,9 @@ void				sortFive(t_stack *aStack, t_stack *bStack);
 void				sortA(t_stack *aStack, t_stack *bStack, int size);
 void				sortB(t_stack *aStack, t_stack *bStack, int size);
 void				getPivots(int pivots[], t_stack *st, int size);
-void				recoverStack(t_stack *aStack, t_stack *bStack, int raCnt, int rbCnt);
+void				recoverStack(t_stack *aStack, t_stack *bStack,
+					int raCnt, int rbCnt);
 void				sortAThree(t_stack *aStack);
 void				sortBThree(t_stack *aStack, t_stack *bStack);
 
-# endif
+#endif
