@@ -12,28 +12,27 @@
 # define RA			1
 # define RB			2
 
-typedef struct		s_list
+typedef struct s_list
 {
 	struct s_node	*head;
 	struct s_node	*tail;
 }					t_list;
 
-typedef struct		s_node
+typedef struct s_node
 {
 	int				content;
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
 
-
-typedef struct		s_stack
+typedef struct ss_stack
 {
 	struct s_list	*list;
 	char			name;
 	size_t			size;
 }					t_stack;
 
-typedef struct 		s_array
+typedef struct s_array
 {
 	int				*array;
 	size_t			size;
@@ -80,7 +79,7 @@ void				sortA(t_stack *aStack, t_stack *bStack, int size);
 void				sortB(t_stack *aStack, t_stack *bStack, int size);
 void				getPivots(int pivots[], t_stack *st, int size);
 void				recoverStack(t_stack *aStack, t_stack *bStack,
-					int raCnt, int rbCnt);
+						int raCnt, int rbCnt);
 void				sortAThree(t_stack *aStack);
 void				sortBThree(t_stack *aStack, t_stack *bStack);
 
