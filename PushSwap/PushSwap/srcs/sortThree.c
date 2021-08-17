@@ -18,24 +18,24 @@ void			sortThree(t_stack *aStack)
 	t_node		*aHead;
 
 	aHead = aStack->list->head;
-	if (aHead->content < aHead->next->content &&
-		aHead->next->content < aHead->next->next->content &&
+	if (aHead->content < aHead->next->content && \
+		aHead->next->content < aHead->next->next->content && \
 		aHead->content < aHead->next->next->content)
 		caseOne(aStack);
-	else if (aHead->content < aHead->next->content &&
-		aHead->next->content > aHead->next->next->content &&
+	else if (aHead->content < aHead->next->content && \
+		aHead->next->content > aHead->next->next->content && \
 		aHead->content < aHead->next->next->content)
 		rra(aStack);
-	else if (aHead->content > aHead->next->content &&
-		aHead->next->content < aHead->next->next->content &&
+	else if (aHead->content > aHead->next->content && \
+		aHead->next->content < aHead->next->next->content && \
 		aHead->content < aHead->next->next->content)
 		ra(aStack);
-	else if (aHead->content < aHead->next->content &&
-		aHead->next->content > aHead->next->next->content &&
+	else if (aHead->content < aHead->next->content && \
+		aHead->next->content > aHead->next->next->content && \
 		aHead->content > aHead->next->next->content)
 		caseFour(aStack);
-	else if (aHead->content > aHead->next->content &&
-		aHead->next->content < aHead->next->next->content &&
+	else if (aHead->content > aHead->next->content && \
+		aHead->next->content < aHead->next->next->content && \
 		aHead->content < aHead->next->next->content)
 		sa(aStack);
 }

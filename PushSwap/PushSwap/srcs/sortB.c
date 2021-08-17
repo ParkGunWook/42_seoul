@@ -1,13 +1,13 @@
 #include "utils.h"
 #include "myloc.h"
 
-static	void		multiPa(t_stack *aStack, t_stack *bStack, int size)
+static	void	multiPa(t_stack *aStack, t_stack *bStack, int size)
 {
 	while (size--)
 		pa(aStack, bStack);
 }
 
-static	void		nextBRecurse(t_stack *aStack, t_stack *bStack, int counts[4])
+static	void	nextBRecurse(t_stack *aStack, t_stack *bStack, int counts[4])
 {
 	if (isStackSorted(aStack, ASC, counts[PUSH] - counts[RA]) == 0)
 		sortA(aStack, bStack, counts[PUSH] - counts[RA]);
@@ -20,7 +20,7 @@ static	void		nextBRecurse(t_stack *aStack, t_stack *bStack, int counts[4])
 		multiPa(aStack, bStack, counts[RB]);
 }
 
-static	void		endBRecurse(t_stack *aStack, t_stack *bStack, int size)
+static	void	endBRecurse(t_stack *aStack, t_stack *bStack, int size)
 {
 	t_node		*bTop;
 
@@ -44,7 +44,7 @@ static	void		endBRecurse(t_stack *aStack, t_stack *bStack, int size)
 	}
 }
 
-static	void		moveStack(t_stack *aStack, t_stack *bStack, int pivots[2], int counts[4])
+static	void	moveStack(t_stack *aStack, t_stack *bStack, int pivots[2], int counts[4])
 {
 	t_node		*bTop;
 
@@ -64,10 +64,9 @@ static	void		moveStack(t_stack *aStack, t_stack *bStack, int pivots[2], int coun
 			ra(aStack);
 		}
 	}
-
 }
 
-void				sortB(t_stack *aStack, t_stack *bStack, int size)
+void	sortB(t_stack *aStack, t_stack *bStack, int size)
 {
 	int		counts[4];
 	int		pivots[4];

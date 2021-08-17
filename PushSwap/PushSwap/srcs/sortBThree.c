@@ -48,7 +48,7 @@ static	void	caseFour(t_stack *aStack, t_stack *bStack)
 	rra(aStack);
 }
 
-void			sortBThree(t_stack *aStack, t_stack *bStack)
+void	sortBThree(t_stack *aStack, t_stack *bStack)
 {
 	t_node		*bTail;
 
@@ -58,16 +58,15 @@ void			sortBThree(t_stack *aStack, t_stack *bStack)
 		pa(aStack, bStack);
 		pa(aStack, bStack);
 		pa(aStack, bStack);
-		return ;
 	}
-	if (bTail->content > bTail->prev->content &&
-	bTail->prev->content < bTail->prev->prev->content)
+	else if (bTail->content > bTail->prev->content && \
+		bTail->prev->content < bTail->prev->prev->content)
 		caseOne(aStack, bStack);
-	else if (bTail->content < bTail->prev->content &&
-	bTail->prev->content < bTail->prev->prev->content)
+	else if (bTail->content < bTail->prev->content && \
+		bTail->prev->content < bTail->prev->prev->content)
 		caseTwo(aStack, bStack);
-	else if (bTail->content < bTail->prev->content &&
-	bTail->prev->content > bTail->prev->prev->content)
+	else if (bTail->content < bTail->prev->content && \
+		bTail->prev->content > bTail->prev->prev->content)
 	{
 		if (bTail->content > bTail->prev->prev->content)
 		{

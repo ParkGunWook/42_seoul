@@ -1,7 +1,7 @@
 #include "myloc.h"
 #include "utils.h"
 
-int			pa(t_stack *aStack, t_stack *bStack)
+int	pa(t_stack *aStack, t_stack *bStack)
 {
 	t_node	*temp;
 
@@ -19,7 +19,7 @@ int			pa(t_stack *aStack, t_stack *bStack)
 	return (1);
 }
 
-int			pb(t_stack *aStack, t_stack *bStack)
+int	pb(t_stack *aStack, t_stack *bStack)
 {
 	t_node	*temp;
 
@@ -37,7 +37,7 @@ int			pb(t_stack *aStack, t_stack *bStack)
 	return (1);
 }
 
-void		ra(t_stack *aStack)
+void	ra(t_stack *aStack)
 {
 	if (aStack->name != 'a')
 		return ;
@@ -50,7 +50,7 @@ void		ra(t_stack *aStack)
 	write(1, "ra\n", 3);
 }
 
-void		rb(t_stack *bStack)
+void	rb(t_stack *bStack)
 {
 	if (bStack->name != 'b')
 		return ;
@@ -63,7 +63,7 @@ void		rb(t_stack *bStack)
 	write(1, "rb\n", 3);
 }
 
-void		rr(t_stack *aStack, t_stack *bStack)
+void	rr(t_stack *aStack, t_stack *bStack)
 {
 	if (bStack->name != 'b')
 		return ;

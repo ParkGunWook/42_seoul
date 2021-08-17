@@ -3,7 +3,7 @@
 
 void	mainSort(t_stack *aStack, t_stack *bStack)
 {
-	t_node *aHead;
+	t_node	*aHead;
 
 	aHead = aStack->list->head;
 	if (aStack->size == 5)

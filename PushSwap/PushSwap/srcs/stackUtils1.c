@@ -1,7 +1,7 @@
 #include "myloc.h"
 #include "utils.h"
 
-t_stack			*initStack(char name)
+t_stack	*initStack(char name)
 {
 	t_stack		*stack;
 
@@ -19,7 +19,7 @@ t_stack			*initStack(char name)
 	return (stack);
 }
 
-int				sa(t_stack *aStack)
+int	sa(t_stack *aStack)
 {
 	t_node	*firstNode;
 	t_node	*secondNode;
@@ -36,7 +36,7 @@ int				sa(t_stack *aStack)
 	return (1);
 }
 
-int				sb(t_stack *bStack)
+int	sb(t_stack *bStack)
 {
 	t_node	*firstNode;
 	t_node	*secondNode;
@@ -53,7 +53,7 @@ int				sb(t_stack *bStack)
 	return (1);
 }
 
-int				ss(t_stack *aStack, t_stack *bStack)
+int	ss(t_stack *aStack, t_stack *bStack)
 {
 	int		ret;
 
@@ -66,4 +66,3 @@ int				ss(t_stack *aStack, t_stack *bStack)
 	write(1, "ss\n", 3);
 	return (ret);
 }
-

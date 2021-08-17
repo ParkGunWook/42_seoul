@@ -1,7 +1,7 @@
 #include "utils.h"
 #include "myloc.h"
 
-static	void		nextARecurse(t_stack *aStack, t_stack *bStack, int counts[4])
+static	void	nextARecurse(t_stack *aStack, t_stack *bStack, int counts[4])
 {
 	recoverStack(aStack, bStack, counts[RA], counts[RB]);
 	if (isStackSorted(aStack, ASC, counts[RA]) == 0)
@@ -10,7 +10,7 @@ static	void		nextARecurse(t_stack *aStack, t_stack *bStack, int counts[4])
 	sortB(aStack, bStack, counts[PUSH] - counts[RB]);
 }
 
-static	void		endARecurse(t_stack *aStack, int size)
+static	void	endARecurse(t_stack *aStack, int size)
 {
 	t_node		*aTop;
 
@@ -21,7 +21,7 @@ static	void		endARecurse(t_stack *aStack, int size)
 		sa(aStack);
 }
 
-static	void		moveStack(t_stack *aStack, t_stack *bStack, int pivots[2], int counts[4])
+static	void	moveStack(t_stack *aStack, t_stack *bStack, int pivots[2], int counts[4])
 {
 	t_node		*aTop;
 
@@ -50,7 +50,7 @@ static	void		moveStack(t_stack *aStack, t_stack *bStack, int pivots[2], int coun
 	}
 }
 
-void				sortA(t_stack *aStack, t_stack *bStack, int size)
+void	sortA(t_stack *aStack, t_stack *bStack, int size)
 {
 	int		counts[4];
 	int		pivots[2];

@@ -1,7 +1,7 @@
 #include "myloc.h"
 #include "utils.h"
 
-void			rra(t_stack *aStack)
+void	rra(t_stack *aStack)
 {
 	if (aStack->name != 'a')
 		return ;
@@ -14,7 +14,7 @@ void			rra(t_stack *aStack)
 	write(1, "rra\n", 4);
 }
 
-void			rrb(t_stack *bStack)
+void	rrb(t_stack *bStack)
 {
 	if (bStack->name != 'b')
 		return ;
@@ -27,7 +27,7 @@ void			rrb(t_stack *bStack)
 	write(1, "rrb\n", 4);
 }
 
-void			rrr(t_stack *aStack, t_stack *bStack)
+void	rrr(t_stack *aStack, t_stack *bStack)
 {
 	write(1, "rrr\n", 4);
 	if (bStack->name != 'b')
@@ -48,13 +48,13 @@ void			rrr(t_stack *aStack, t_stack *bStack)
 	aStack->list->head = aStack->list->head->next;
 }
 
-void			clearStack(t_stack **st)
+void	clearStack(t_stack **st)
 {
 	clearList(&((*st)->list));
 	myFree((void **)st);
 }
 
-int				isStackSorted(t_stack *st, int sortType, int n)
+int	isStackSorted(t_stack *st, int sortType, int n)
 {
 	t_node		*cur;
 

@@ -25,5 +25,5 @@ int main(int argc, char **argv)
     mainSort(aStack, bStack);
     clearStack(&aStack);
     clearStack(&bStack);
-    return 0;
+    return (0);
 }

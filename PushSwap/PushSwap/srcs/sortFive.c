@@ -1,7 +1,7 @@
 #include "myloc.h"
 #include "utils.h"
 
-static int		getFivePivot(t_stack *aStack)
+static int	getFivePivot(t_stack *aStack)
 {
 	int			pivot;
 	t_array		*sortedArray;
