@@ -13,9 +13,9 @@
 #include "myloc.h"
 #include "utils.h"
 
-int		ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
-	int str_size;
+	int	str_size;
 
 	str_size = 0;
 	while (*str != 0)

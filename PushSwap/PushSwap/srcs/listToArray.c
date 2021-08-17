@@ -1,16 +1,16 @@
 #include "myloc.h"
 #include "utils.h"
 
-static void ft_swap(int *a, int *b)
+static void	ft_swap(int *a, int *b)
 {
-	int temp;
+	int	temp;
 
 	temp = *a;
 	*a = *b;
 	*b = temp;
 }
 
-static void		sortArray(t_array *arr)
+static void	sortArray(t_array *arr)
 {
 	size_t		i;
 	size_t		j;
@@ -37,7 +37,7 @@ static void		sortArray(t_array *arr)
 	}
 }
 
-t_array			*listToSortedArray(t_stack *aStack, int size)
+t_array	*listToSortedArray(t_stack *aStack, int size)
 {
 	t_array		*ret;
 	t_node		*cur;
@@ -60,7 +60,7 @@ t_array			*listToSortedArray(t_stack *aStack, int size)
 	return (ret);
 }
 
-void			freeSortedArray(t_array **sortedArray)
+void	freeSortedArray(t_array **sortedArray)
 {
 	myFree((void **)&((*sortedArray)->array));
 	myFree((void **)sortedArray);

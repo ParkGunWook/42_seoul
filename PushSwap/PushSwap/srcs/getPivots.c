@@ -1,7 +1,7 @@
 #include "utils.h"
 #include "myloc.h"
 
-void		getPivots(int pivots[], t_stack *st, int size)
+void	getPivots(int pivots[], t_stack *st, int size)
 {
 	t_array		*sortedArray;
 

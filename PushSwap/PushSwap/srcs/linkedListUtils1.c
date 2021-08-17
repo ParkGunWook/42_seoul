@@ -1,20 +1,20 @@
 #include "utils.h"
 #include "myloc.h"
 
-t_list 			*initList()
+t_list	*initList(void)
 {
 	t_list	*tList;
 
 	tList = NULL;
 	myAloc((void *)&tList, sizeof(t_list));
 	if (tList == NULL)
-		return NULL;
+		return (NULL);
 	tList->head = NULL;
 	tList->tail = NULL;
 	return (tList);
 }
 
-int				addBack(t_list *tList, int value)
+int	addBack(t_list *tList, int value)
 {
 	t_node	*curNode;
 
@@ -39,7 +39,7 @@ int				addBack(t_list *tList, int value)
 	return (1);
 }
 
-t_node			*popBack(t_list *list)
+t_node	*popBack(t_list *list)
 {
 	t_node	*node;
 
@@ -76,7 +76,7 @@ static	void	clearNodes(t_list *list, t_node **curNode)
 	}
 }
 
-void			clearList(t_list **list)
+void	clearList(t_list **list)
 {
 	if ((*list)->head != NULL)
 		clearNodes(*list, &(*list)->head);

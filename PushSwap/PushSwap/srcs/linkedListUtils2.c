@@ -1,10 +1,10 @@
 #include "utils.h"
 #include "myloc.h"
 
-void		traverseAll(t_list *list)
+void	traverseAll(t_list *list)
 {
 	t_node		*cur;
-	int 		cnt;
+	int			cnt;
 
 	printf("start Traversal\n");
 	if (list == NULL)
@@ -23,10 +23,10 @@ void		traverseAll(t_list *list)
 	return ;
 }
 
-void		rtraverseAll(t_list *list)
+void	rtraverseAll(t_list *list)
 {
 	t_node		*cur;
-	int 		cnt;
+	int			cnt;
 
 	printf("start rTraversal\n");
 	if (list == NULL)
@@ -45,7 +45,7 @@ void		rtraverseAll(t_list *list)
 	return ;
 }
 
-void		addBackNode(t_list *tList, t_node *curNode)
+void	addBackNode(t_list *tList, t_node *curNode)
 {
 	if (tList->head == NULL)
 	{

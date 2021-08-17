@@ -13,7 +13,7 @@
 #include "myloc.h"
 #include "utils.h"
 
-static	int		strChecker(char *new)
+static	int	strChecker(char *new)
 {
 	int		i;
 

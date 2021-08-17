@@ -1,24 +1,28 @@
 #include "utils.h"
 #include "myloc.h"
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) 
+{
+    t_list  *list;
+    t_stack *aStack;
+    t_node  *temp;
+    t_stack *bStack;
+
     if (argc == 0)
         return (0);
-    t_list *list;
     list = parser(argv + 1);
-    t_stack *aStack = initStack('a');
+    aStack = initStack('a');
     while (1)
     {
-        t_node *temp = popBack(list);
+        temp = popBack(list);
         if (temp == NULL)
             break;
         addBackNode(aStack->list, temp);
         aStack->size++;
     }
     clearList(&list);
-    t_stack *bStack = initStack('b');
+    bStack = initStack('b');
     mainSort(aStack, bStack);
-    //rtraverseAll(aStack->list);
     clearStack(&aStack);
     clearStack(&bStack);
     return 0;
