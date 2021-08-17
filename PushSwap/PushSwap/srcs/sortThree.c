@@ -36,6 +36,6 @@ void	sortThree(t_stack *aStack)
 		caseFour(aStack);
 	else if (aHead->content > aHead->next->content && \
 		aHead->next->content < aHead->next->next->content && \
-		aHead->content < aHead->next->next->content)
+		aHead->content > aHead->next->next->content)
 		sa(aStack);
 }
